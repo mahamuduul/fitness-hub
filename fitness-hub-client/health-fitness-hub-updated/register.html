@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Register</title>
+
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <script defer src="assets/js/main.js"></script>
+
+  <style>
+    /* Page-local tweaks to match the soft, rounded look from the mockup */
+    .auth-wrap { max-width: 520px; }
+    .auth-title {
+      text-align: center;
+      font-weight: 800;
+      letter-spacing: .2px;
+      margin: .25rem 0 1rem 0;
+    }
+    .auth-card .p { display:grid; gap:.75rem; }
+    .auth-field { display:grid; gap:.35rem; }
+    .auth-input, .auth-select {
+      width: 100%;
+      padding: .8rem .9rem;
+      border-radius: 14px;
+      border: 1px solid #e2e8f0;
+      background: #fff;
+      outline: none;
+    }
+    .auth-input::placeholder { color: #a0aec0; }
+    .auth-button {
+      appearance: none;
+      width: 100%;
+      padding: .9rem 1rem;
+      border-radius: 14px;
+      border: 1px solid #5a67d8;
+      background: #5a67d8;
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .auth-meta {
+      text-align:center;
+      font-size:.95rem;
+      opacity:.9;
+    }
+    .auth-meta a { color: #2b6cb0; text-decoration: none; }
+    .error { color: #b00020; font-size:.95rem; }
+    .success { color: #2f855a; font-size:.95rem; }
+  </style>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.getElementById("registerForm");
+      const status = document.getElementById("registerStatus");
+      const name = document.getElementById("name");
+      const email = document.getElementById("email");
+      const password = document.getElementById("password");
+      const role = document.getElementById("role");
+
+      function isValidEmail(v){
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+      }
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        status.textContent = "";
+        status.className = "";
+
+        const data = {
+          name: name.value.trim(),
+          email: email.value.trim(),
+          password: password.value.trim(),
+          role: role.value
+        };
+
+        // Basic validation to mimic a real form while staying front-end only
+        if(!data.name){
+          status.textContent = "Please enter your name.";
+          status.className = "error";
+          return;
+        }
+        if(!isValidEmail(data.email)){
+          status.textContent = "Please enter a valid email address.";
+          status.className = "error";
+          return;
+        }
+        if(data.password.length < 6){
+          status.textContent = "Password should be at least 6 characters.";
+          status.className = "error";
+          return;
+        }
+        if(!data.role){
+          status.textContent = "Please select a role.";
+          status.className = "error";
+          return;
+        }
+
+        // Demo-only: save to localStorage so you can test a "login" right away.
+        // (In production, send to your backend via fetch/POST.)
+        try {
+          const key = "demoUsers";
+          const users = JSON.parse(localStorage.getItem(key) || "[]");
+          // Avoid duplicate email in demo
+          if(users.some(u => u.email.toLowerCase() === data.email.toLowerCase())){
+            status.textContent = "An account with this email already exists (demo).";
+            status.className = "error";
+            return;
+          }
+          users.push(data);
+          localStorage.setItem(key, JSON.stringify(users));
+          status.textContent = "Registration successful! You can log in now.";
+          status.className = "success";
+          setTimeout(() => { window.location.href = "login.html"; }, 900);
+        } catch (err){
+          status.textContent = "Could not save your registration in this demo.";
+          status.className = "error";
+        }
+      });
+    });
+  </script>
+</head>
+<body>
+
+<header class="header">
+  <div class="nav container">
+    <a class="brand" href="index.html">
+      <span class="">
+        <img src="https://static1.squarespace.com/static/67ac789e2722625ed79275f7/t/68129b75dca49a402ddb2f5e/1746049648239/" alt="Health & Fitness Hub Logo" width="28" height="28" style="vertical-align:middle;margin-right:8px"></span> Health & Fitness Hub
+    </a>
+    <button class="menu-toggle" aria-label="Toggle menu">☰ Menu</button>
+    <ul>
+      <li><a href="gym.html">Gyms</a></li>
+      <li><a href="medical.html">Medical</a></li>
+      <li><a href="nutrition.html">Nutrition</a></li>
+      <li><a href="mind.html">Mind</a></li>
+      <li><a href="diet.html">Diet Plans</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="register.html">Register</a></li>
+      <li><a class="link-admin hidden" href="admin.html">Admin</a></li>
+      <li><a class="link-login" href="login.html">Login</a></li>
+      <li><a class="link-logout hidden" href="#" onclick="logout()">Logout</a></li>
+    </ul>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container auth-wrap">
+    <h1 class="auth-title">Register</h1>
+    <div class="card auth-card">
+      <div class="p">
+        <form id="registerForm">
+          <div class="auth-field">
+            <input id="name" name="name" class="auth-input" placeholder="Name" autocomplete="name" />
+          </div>
+          <div class="auth-field">
+            <input id="email" name="email" type="email" class="auth-input" placeholder="Email" autocomplete="email" />
+          </div>
+          <div class="auth-field">
+            <input id="password" name="password" type="password" class="auth-input" placeholder="Password" autocomplete="new-password" />
+          </div>
+          <div class="auth-field">
+            <select id="role" name="role" class="auth-select">
+              <option value="" selected>--Select Role--</option>
+              <option value="user">User</option>
+              <option value="trainer">Trainer</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+          <button class="auth-button" type="submit">Register</button>
+          <div id="registerStatus" class="small"></div>
+        </form>
+
+        <p class="auth-meta">Already have an account? <a href="login.html">Login</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container small">
+    © 2025 Health & Fitness Hub — Built with ❤️ for learning (demo).
+  </div>
+</footer>
+
+</body>
+</html>

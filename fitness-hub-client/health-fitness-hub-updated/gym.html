@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Gyms & Trainers</title>
+
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <script defer src="assets/js/main.js"></script>
+
+  <style>
+    .see-location {
+      display: inline-block;
+      margin-top: 0.5rem;
+      font-weight: 600;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    .card img.gym-photo {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <div class="nav container">
+    <a class="brand" href="index.html">
+      <!-- ADDED: logo image (kept everything else unchanged) -->
+
+      <span class="">
+        <img src="https://static1.squarespace.com/static/67ac789e2722625ed79275f7/t/68129b75dca49a402ddb2f5e/1746049648239/" alt="Health & Fitness Hub Logo" width="28" height="28" style="vertical-align:middle;margin-right:8px"></span> Health & Fitness Hub
+    </a>
+    <button class="menu-toggle" aria-label="Toggle menu">☰ Menu</button>
+    <ul>
+      <li><a href="gym.html">Gyms</a></li>
+      <li><a href="medical.html">Medical</a></li>
+      <li><a href="nutrition.html">Nutrition</a></li>
+      <li><a href="mind.html">Mind</a></li>
+      <li><a href="diet.html">Diet Plans</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="register.html">Register</a></li>
+      <li><a class="link-admin hidden" href="admin.html">Admin</a></li>
+      <li><a class="link-login" href="login.html">Login</a></li>
+      <li><a class="link-logout hidden" href="#" onclick="logout()">Logout</a></li>
+    </ul>
+  </div>
+</header>
+
+  <section class="section">
+    <div class="container">
+      <h1>Nearby Gyms & Trainer Information</h1>
+      <p class="small">Tip: press <span class="kbd">Ctrl</span> + <span class="kbd">F</span> to search.</p>
+
+      <div class="grid">
+        <!-- Muscle Care Gym -->
+        <div class="card">
+          <img class="gym-photo" src="assets/images/gym1.jpg" alt="Muscle Care Gym photo"/>
+          <div class="p">
+            <h3>Muscle Care Gym</h3>
+            <p><span class="badge">Rajshahi</span> 7:00–22:00</p>
+            <p>Trainers: Mim (Strength)</p>
+            <p class="small">Phone: 01700-000000</p>
+            <a href="#map"
+               class="see-location"
+               data-gym="Muscle Care Gym"
+               data-map-src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3634.3323137113116!2d88.5726558!3d24.3697405!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39fbef1f59523c69%3A0xf0088928fb4fc143!2sMuscle%20Care%20Gym!5e0!3m2!1sen!2sde!4v1757417654870!5m2!1sen!2sde">See location</a>
+          </div>
+        </div>
+
+        <!-- Fitlife Gym - Kadirganj Branch -->
+        <div class="card">
+          <img class="gym-photo" src="assets/images/gym2.jpg" alt="Fitlife Gym - Kadirganj Branch photo"/>
+          <div class="p">
+            <h3>Fitlife Gym - Kadirganj Branch</h3>
+            <p><span class="badge">Rajshahi</span> 6:00–23:00</p>
+            <p>Trainers: Rumi (Weight Loss)</p>
+            <p class="small">Phone: 01800-000000</p>
+            <a href="#map"
+               class="see-location"
+               data-gym="Fitlife Gym - Kadirganj Branch"
+               data-map-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3634.193527948253!2d88.5998906!3d24.374570199999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39fbef5e1542e94d%3A0x475194d02eb509e7!2sFitlife%20Gym%20-%20Kadirganj%20Branch!5e0!3m2!1sen!2sde!4v1757455929259!5m2!1sen!2sde">See location</a>
+          </div>
+        </div>
+
+        <!-- Fitness Zone Rajshahi-New Market Branch -->
+        <div class="card">
+          <img class="gym-photo" src="assets/images/gym3.jpg" alt="Fitness Zone Rajshahi-New Market Branch photo"/>
+          <div class="p">
+            <h3>Fitness Zone Rajshahi-New Market Branch</h3>
+            <p><span class="badge">Rajshahi</span> 8:00–21:00</p>
+            <p>Trainers: Jitu (CrossFit), Omi (Mobility)</p>
+            <p class="small">Phone: 01600-000000</p>
+            <a href="#map"
+               class="see-location"
+               data-gym="Fitness Zone Rajshahi-New Market Branch"
+               data-map-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3634.2360770625246!2d88.6012631!3d24.3730896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39fbefa313de8807%3A0x248e098f99a76a04!2sFitness%20Zone%20Rajshahi-New%20Market%20Branch!5e0!3m2!1sen!2sde!4v1757455986640!5m2!1sen!2sde">See location</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- DEFAULT MAP BELOW -->
+      <h2 id="map" style="margin-top:2rem;">Map</h2>
+      <p id="mapLabel" class="small" aria-live="polite">Currently showing: General area (Bangladesh)</p>
+      <div class="card">
+        <div class="p">
+          <div style="position:relative;overflow:hidden;width:100%;padding-top:56.25%;border-radius:12px;border:1px solid #e2e8f0">
+            <iframe
+              id="defaultMapFrame"
+              title="Map"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684642.8334545856!2d88.007293927101!3d23.73078974460826!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8ae8b2c58d3%3A0xf3a351f17f9e1b2e!2sBangladesh!5e0!3m2!1sen!2sbd!4v1700000000000!5m2!1sen!2sbd"
+              style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+      <!-- /DEFAULT MAP BELOW -->
+    </div>
+  </section>
+
+<footer class="footer">
+  <div class="container small">
+    © 2025 Health & Fitness Hub — Built with ❤️ for learning (demo).
+  </div>
+</footer>
+
+<script>
+  // Update the default map below when "See location" is clicked
+  (function() {
+    const mapFrame = document.getElementById('defaultMapFrame');
+    const mapLabel = document.getElementById('mapLabel');
+
+    document.addEventListener('click', function(e) {
+      const link = e.target.closest('.see-location');
+      if (!link) return;
+
+      e.preventDefault();
+      const gymName = link.getAttribute('data-gym') || 'Gym';
+      const mapSrc  = link.getAttribute('data-map-src');
+      if (mapSrc && mapFrame) {
+        mapFrame.src = mapSrc;
+        if (mapLabel) mapLabel.textContent = 'Currently showing: ' + gymName;
+        // Smooth scroll the map into view for better UX
+        const mapHeader = document.getElementById('map');
+        if (mapHeader && mapHeader.scrollIntoView) {
+          mapHeader.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>

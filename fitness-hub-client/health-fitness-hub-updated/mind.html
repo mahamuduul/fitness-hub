@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Mind Training — Meditation & Yoga</title>
+
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <script defer src="assets/js/main.js"></script>
+
+  <style>
+    /* ---- Page-local styles ---- */
+    .mind-hero {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      padding: clamp(1.25rem, 2.5vw, 2rem);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.95)),
+        url('https://source.unsplash.com/1600x600/?meditation,yoga,calm') center/cover no-repeat;
+      display: grid;
+      gap: 1rem;
+      align-items: center;
+    }
+    .mind-hero h1 { margin: 0; letter-spacing: 0.3px; }
+    .mind-hero p.lead { margin: 0; opacity: .8; max-width: 60ch; }
+    .mind-hero .cta {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .6rem .95rem; border-radius: 999px;
+      background: #2b6cb0; color: #fff; text-decoration: none; font-weight: 600;
+      box-shadow: 0 6px 18px rgba(43,108,176,.15);
+    }
+    .mind-hero .cta:hover { filter: brightness(.95); }
+
+    .breath-card { display: grid; gap: 1rem; }
+    .breath-controls { display: grid; gap: .5rem; }
+    .breath-controls .row { display: grid; gap: .5rem; }
+    @media (min-width: 640px) { .breath-controls .row { grid-template-columns: 1fr 1fr; } }
+    .breath-circle-wrap { display: grid; place-items: center; padding: 1rem; }
+    .breath-circle {
+      width: 180px; height: 180px; border-radius: 999px;
+      background: radial-gradient(circle at 50% 45%, #c6f6d5, #9ae6b4);
+      box-shadow: 0 10px 30px rgba(0,0,0,.10), inset 0 0 0 8px rgba(255,255,255,.7);
+      transform: scale(1);
+      transition: transform 0.5s ease-in-out, background 0.6s ease-in-out;
+    }
+    .breath-circle.inhale { transform: scale(1.10); background: radial-gradient(circle at 50% 45%, #b2f5ea, #81e6d9); }
+    .breath-circle.hold   { transform: scale(1.05); background: radial-gradient(circle at 50% 45%, #c3dafe, #a3bffa); }
+    .breath-circle.exhale { transform: scale(0.95); background: radial-gradient(circle at 50% 45%, #fed7e2, #fbb6ce); }
+    .breath-instruction { text-align: center; font-weight: 700; letter-spacing: .3px; }
+    .breath-timer { text-align: center; opacity: .75; font-variant-numeric: tabular-nums; }
+    .breath-actions { display: flex; gap: .5rem; justify-content: center; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: .5rem; padding: .55rem .9rem; border-radius: 10px; border: 1px solid #e2e8f0; background: #fff; color: #1a202c; text-decoration: none; font-weight: 600; }
+    .btn.primary { background: #2b6cb0; color:#fff; border-color: #2b6cb0; }
+    .btn:disabled { opacity: .6; cursor: not-allowed; }
+    .small-muted { font-size: .9rem; opacity: .8; }
+
+    .pose-photo {
+      width: 100%; height: 180px; object-fit: cover; background: #f8fafc; display: block;
+      border-top-left-radius: 12px; border-top-right-radius: 12px;
+    }
+    @media (min-width: 1024px) { .pose-photo { height: 200px; } }
+
+    .checklist { margin: 0; padding-left: 1rem; }
+    .checklist li { margin: .35rem 0; }
+
+    .anchor { scroll-margin-top: 80px; }
+
+    /* Video card: use extra free space on wide screens */
+    .video-card .p { display: grid; gap: .65rem; }
+    .video-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .video-iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+
+    /* Widen the video card to span 2 columns on large screens
+       (only when there's free space available in the grid). */
+    @media (min-width: 1024px) {
+      .grid > .card.video-card { grid-column: auto / span 2; }
+    }
+
+    /* Optional: remove extra inner padding around the iframe to maximize width */
+    .video-card .p { padding: 1rem; }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <div class="nav container">
+    <a class="brand" href="index.html">
+      <span class="">
+        <img src="https://static1.squarespace.com/static/67ac789e2722625ed79275f7/t/68129b75dca49a402ddb2f5e/1746049648239/" alt="Health & Fitness Hub Logo" width="28" height="28" style="vertical-align:middle;margin-right:8px"></span> Health & Fitness Hub
+    </a>
+    <button class="menu-toggle" aria-label="Toggle menu">☰ Menu</button>
+    <ul>
+      <li><a href="gym.html">Gyms</a></li>
+      <li><a href="medical.html">Medical</a></li>
+      <li><a href="nutrition.html">Nutrition</a></li>
+      <li><a class="active" href="mind.html">Mind</a></li>
+      <li><a href="diet.html">Diet Plans</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="register.html">Register</a></li>
+      <li><a class="link-admin hidden" href="admin.html">Admin</a></li>
+      <li><a class="link-login" href="login.html">Login</a></li>
+      <li><a class="link-logout hidden" href="#" onclick="logout()">Logout</a></li>
+    </ul>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <!-- HERO -->
+    <div class="mind-hero">
+      <div>
+        <h1>Meditation & Yoga</h1>
+        <p class="lead">Breathe, move, and reset. Short guided breathing, a beginner-friendly flow, and simple routines you can actually keep.</p>
+        <p style="margin-top:.5rem"><a href="#breathing" class="cta">Start 5-min Session</a></p>
+      </div>
+    </div>
+
+    <!-- BREATHING -->
+    <div id="breathing" class="anchor" style="margin-top:1.5rem"></div>
+    <div class="grid">
+      <div class="card breath-card">
+        <div class="p">
+          <h2>Guided Breathing</h2>
+          <p class="small">Choose a pattern. Press <strong>Start</strong>. Follow the circle and the cue text.</p>
+
+          <div class="breath-controls">
+            <div class="row">
+              <label>
+                Pattern<br/>
+                <select id="patternSelect">
+                  <option value="box">Box — 4•4•4•4</option>
+                  <option value="fourseveneight">4–7–8 — Inhale 4, Hold 7, Exhale 8</option>
+                  <option value="equal">Equal — 5 inhale, 5 exhale</option>
+                </select>
+              </label>
+              <label>
+                Session length<br/>
+                <select id="lengthSelect">
+                  <option>3 min</option>
+                  <option selected>5 min</option>
+                  <option>8 min</option>
+                  <option>10 min</option>
+                </select>
+              </label>
+            </div>
+          </div>
+
+          <div class="breath-circle-wrap">
+            <div id="breathCircle" class="breath-circle" aria-hidden="true"></div>
+          </div>
+          <p id="breathInstruction" class="breath-instruction" aria-live="polite">Ready</p>
+          <p id="breathTimer" class="breath-timer">05:00</p>
+
+          <div class="breath-actions">
+            <button id="startBtn" class="btn primary">Start</button>
+            <button id="pauseBtn" class="btn" disabled>Pause</button>
+            <button id="resetBtn" class="btn" disabled>Reset</button>
+          </div>
+
+          <p class="small-muted">Tip: Try daily — morning before screens, midday break, and before bed.</p>
+        </div>
+      </div>
+
+      <!-- Video card (wider on large screens) -->
+      <div class="card video-card">
+        <div class="p">
+          <h2>Guided Breathing Video</h2>
+          <div class="video-wrap">
+            <iframe
+              id="ytFrame"
+              class="video-iframe"
+              src="https://www.youtube-nocookie.com/embed/3X0hEHop8ec?rel=0&modestbranding=1&enablejsapi=1"
+              title="Guided Breathing Video"
+              frameborder="0"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="origin-when-cross-origin"
+              allowfullscreen></iframe>
+          </div>
+          <p id="ytError" class="small-muted" style="display:none;color:#b00020;">We couldn’t start the embedded player. Trying a fallback…</p>
+          <p class="small-muted">If the player doesn’t load, <a href="https://www.youtube.com/watch?v=3X0hEHop8ec" target="_blank" rel="noopener">watch on YouTube</a>.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- YOGA FLOW -->
+    <div id="yoga" class="anchor" style="margin-top:1.5rem"></div>
+    <h2>Beginner Yoga Flow (10–12 min)</h2>
+    <div class="grid">
+      <div class="card">
+        <img class="pose-photo"
+             alt="Mountain Pose (Tadasana)"
+             data-src1="https://yogajala.com/wp-content/uploads/2022/01/Tadasana-mountain-pose.jpg"
+             data-src2="https://source.unsplash.com/1200x800/?standing%20yoga%20pose">
+        <div class="p">
+          <h3>Mountain (Tadasana)</h3>
+          <p>Ground feet hip-width. Lengthen spine. Soften shoulders. 5 breaths.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img class="pose-photo"
+             alt="Forward Fold (Uttanasana)"
+             data-src1="https://www.gaia.com/wp-content/uploads/standing-forward-fold-share.jpg"
+             data-src2="https://source.unsplash.com/1200x800/?forward%20fold%20yoga">
+        <div class="p">
+          <h3>Forward Fold (Uttanasana)</h3>
+          <p>Hinge at hips, slight knee bend, crown heavy. 5–8 breaths.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img class="pose-photo"
+             alt="Low Lunge (Anjaneyasana)"
+             data-src1="https://www.yogateket.com/image/original/DSC_9006.jpg"
+             data-src2="https://source.unsplash.com/1200x800/?low%20lunge%20yoga">
+        <div class="p">
+          <h3>Low Lunge (Anjaneyasana)</h3>
+          <p>Knee over ankle, back knee down or lifted, chest open. 5 breaths/side.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img class="pose-photo"
+             alt="Downward-Facing Dog"
+             data-src1="https://experiencelife.lifetime.life/wp-content/uploads/2024/07/so24-bid-downward-facing-dog.jpg"
+             data-src2="https://source.unsplash.com/1200x800/?adho%20mukha%20svanasana">
+        <div class="p">
+          <h3>Downward Dog</h3>
+          <p>Hips back and up, long spine, generous knee bend if needed. 5–8 breaths.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img class="pose-photo"
+             alt="Child’s Pose (Balasana)"
+             data-src1="https://i.ytimg.com/vi/2MJGg-dUKh0/maxresdefault.jpg"
+             data-src2="https://source.unsplash.com/1200x800/?childs%20pose%20yoga">
+        <div class="p">
+          <h3>Child’s Pose (Balasana)</h3>
+          <p>Knees wide or together, forearms down, breathe into back ribs. 6–10 breaths.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img class="pose-photo"
+             alt="Seated Twist (Ardha Matsyendrasana)"
+             data-src1="https://experiencelife.lifetime.life/wp-content/uploads/2022/03/may22-bid-seated-twist.jpg"
+             data-src2="https://source.unsplash.com/1200x800/?seated%20twist%20yoga">
+        <div class="p">
+          <h3>Seated Twist</h3>
+          <p>Lift tall on inhale, twist gently on exhale. 5 breaths/side.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container small">
+    © 2025 Health & Fitness Hub — Built with ❤️ for learning (demo).
+  </div>
+</footer>
+
+<!-- YouTube IFrame API to detect & recover from player errors (e.g., 153) -->
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+  // Fallback to standard youtube.com if nocookie domain fails with an error like 153.
+  let ytPlayer;
+  function onYouTubeIframeAPIReady() {
+    ytPlayer = new YT.Player('ytFrame', {
+      events: {
+        'onError': function (e) {
+          try {
+            document.getElementById('ytError').style.display = 'block';
+          } catch (_) {}
+          const frame = document.getElementById('ytFrame');
+          const current = frame.getAttribute('src') || '';
+          // If we're on nocookie, switch to www; otherwise, leave as-is.
+          if (current.includes('youtube-nocookie.com')) {
+            const next = current.replace('youtube-nocookie.com', 'www.youtube.com');
+            // Use a short delay so the user sees the switch without flicker.
+            setTimeout(() => { frame.setAttribute('src', next); }, 300);
+          }
+        }
+      }
+    });
+  }
+</script>
+
+<script>
+/* -------- Guided Breathing Logic -------- */
+(function() {
+  const circle = document.getElementById('breathCircle');
+  const instruction = document.getElementById('breathInstruction');
+  const timerEl = document.getElementById('breathTimer');
+  const startBtn = document.getElementById('startBtn');
+  const pauseBtn = document.getElementById('pauseBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  const patternSel = document.getElementById('patternSelect');
+  const lengthSel = document.getElementById('lengthSelect');
+
+  let running = false;
+  let paused = false;
+  let rafId = null;
+  let sessionMs = 5*60*1000;
+  let remainMs = sessionMs;
+
+  function readSessionLength() {
+    const m = parseInt(lengthSel.value, 10);
+    sessionMs = (isNaN(m) ? parseInt(lengthSel.value) : m) * 60 * 1000;
+    if (isNaN(sessionMs)) {
+      if (lengthSel.value.includes('10')) sessionMs = 10*60*1000;
+      else if (lengthSel.value.includes('8')) sessionMs = 8*60*1000;
+      else if (lengthSel.value.includes('5')) sessionMs = 5*60*1000;
+      else sessionMs = 3*60*1000;
+    }
+    remainMs = sessionMs;
+    updateTimer(remainMs);
+  }
+  readSessionLength();
+
+  function pattern() {
+    const p = patternSel.value;
+    if (p === 'box')            return [{k:'inhale',s:4},{k:'hold',s:4},{k:'exhale',s:4},{k:'hold',s:4}];
+    if (p === 'fourseveneight') return [{k:'inhale',s:4},{k:'hold',s:7},{k:'exhale',s:8}];
+    if (p === 'equal')          return [{k:'inhale',s:5},{k:'exhale',s:5}];
+    return [{k:'inhale',s:4},{k:'exhale',s:4}];
+  }
+
+  function labelFor(k) {
+    if (k === 'inhale') return 'Inhale';
+    if (k === 'exhale') return 'Exhale';
+    if (k === 'hold')   return 'Hold';
+    return 'Breathe';
+  }
+  function setPhase(k) {
+    circle.classList.remove('inhale','exhale','hold');
+    circle.classList.add(k);
+    instruction.textContent = labelFor(k);
+  }
+
+  function updateTimer(ms) {
+    const totalSec = Math.max(0, Math.round(ms/1000));
+    const mm = String(Math.floor(totalSec/60)).padStart(2,'0');
+    const ss = String(totalSec%60).padStart(2,'0');
+    timerEl.textContent = `${mm}:${ss}`;
+  }
+
+  function animate(startTs, accMs, stepIdx) {
+    if (!running || paused) return;
+    const steps = pattern();
+    const step = steps[stepIdx % steps.length];
+    const stepDur = step.s * 1000;
+
+    if (accMs === 0) setPhase(step.k);
+
+    function tick(ts) {
+      if (!running || paused) return;
+      const elapsed = ts - startTs;
+      updateTimer(remainMs - elapsed);
+      if (elapsed >= stepDur) {
+        remainMs -= stepDur;
+        if (remainMs <= 0) { finish(); return; }
+        animate(performance.now(), 0, stepIdx+1);
+      } else {
+        rafId = requestAnimationFrame(tick);
+      }
+    }
+    rafId = requestAnimationFrame(tick);
+  }
+
+  function start() {
+    if (running) return;
+    running = true; paused = false;
+    startBtn.disabled = true; pauseBtn.disabled = false; resetBtn.disabled = false;
+    patternSel.disabled = true; lengthSel.disabled = true;
+    if (remainMs <= 0 || remainMs > sessionMs) remainMs = sessionMs;
+    animate(performance.now(), 0, 0);
+  }
+
+  function pause() {
+    if (!running) return;
+    paused = !paused;
+    if (paused) {
+      pauseBtn.textContent = 'Resume';
+      if (rafId) cancelAnimationFrame(rafId);
+    } else {
+      pauseBtn.textContent = 'Pause';
+      animate(performance.now(), 0, 0);
+    }
+  }
+
+  function reset() {
+    if (rafId) cancelAnimationFrame(rafId);
+    running = false; paused = false;
+    startBtn.disabled = false; pauseBtn.disabled = true; resetBtn.disabled = true;
+    pauseBtn.textContent = 'Pause';
+    patternSel.disabled = false; lengthSel.disabled = false;
+    readSessionLength();
+    instruction.textContent = 'Ready';
+    circle.classList.remove('inhale','exhale','hold');
+  }
+
+  function finish() {
+    if (rafId) cancelAnimationFrame(rafId);
+    running = false; paused = false;
+    startBtn.disabled = false; pauseBtn.disabled = true; resetBtn.disabled = false;
+    pauseBtn.textContent = 'Pause';
+    patternSel.disabled = false; lengthSel.disabled = false;
+    instruction.textContent = 'Done';
+    updateTimer(0);
+  }
+
+  startBtn.addEventListener('click', start);
+  pauseBtn.addEventListener('click', pause);
+  resetBtn.addEventListener('click', reset);
+  lengthSel.addEventListener('change', () => { readSessionLength(); });
+})();
+
+/* -------- Load pose images with a reliable 2-step fallback -------- */
+(function() {
+  function loadWithFallback(img) {
+    const src1 = img.getAttribute('data-src1');
+    const src2 = img.getAttribute('data-src2');
+    let tried = 0;
+    function tryNext() {
+      tried++;
+      if (tried === 1 && src1) { img.src = src1; }
+      else if (tried === 2 && src2) { img.src = src2; }
+      else { img.onerror = null; }
+    }
+    img.onerror = tryNext;
+    tryNext();
+  }
+  document.querySelectorAll('img.pose-photo').forEach(loadWithFallback);
+})();
+</script>
+
+</body>
+</html>

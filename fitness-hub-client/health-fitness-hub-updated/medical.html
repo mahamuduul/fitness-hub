@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Medical Consultancy</title>
+
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <script defer src="assets/js/main.js"></script>
+
+  <style>
+    /* Ensure doctor portraits are fully visible and consistent size */
+    .doc-photo {
+      width: 100% !important;     /* fill the card width */
+      height: 320px !important;   /* fixed height box */
+      object-fit: contain;        /* show entire face; no crop */
+      background: #fff;           /* clean letterbox background */
+      padding: 8px;               /* breathing room */
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+      display: block;
+    }
+    /* Optional: keep card content heights tidy */
+    .section .grid .card .p { min-height: 180px; }
+
+    /* ADDED (tiny, neutral utility so we don't change the design): */
+    .search-input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font: inherit;
+      outline: none;
+    }
+    .search-input:focus { border-color: #aaa; }
+    .search-meta { font-size: 0.9rem; margin-top: .5rem; color: #555; }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <div class="nav container">
+    <a class="brand" href="index.html">
+      <!-- ADDED: logo image (kept everything else unchanged) -->
+
+      <span class="">
+        <img src="https://static1.squarespace.com/static/67ac789e2722625ed79275f7/t/68129b75dca49a402ddb2f5e/1746049648239/" alt="Health & Fitness Hub Logo" width="28" height="28" style="vertical-align:middle;margin-right:8px"></span> Health & Fitness Hub
+    </a>
+    <button class="menu-toggle" aria-label="Toggle menu">☰ Menu</button>
+    <ul>
+      <li><a href="gym.html">Gyms</a></li>
+      <li><a href="medical.html">Medical</a></li>
+      <li><a href="nutrition.html">Nutrition</a></li>
+      <li><a href="mind.html">Mind</a></li>
+      <li><a href="diet.html">Diet Plans</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="register.html">Register</a></li>
+      <li><a class="link-admin hidden" href="admin.html">Admin</a></li>
+      <li><a class="link-login" href="login.html">Login</a></li>
+      <li><a class="link-logout hidden" href="#" onclick="logout()">Logout</a></li>
+    </ul>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <h1>Medical Guidelines & Doctor Information</h1>
+    <p class="small">⚠️ Always consult a licensed physician for personal medical advice.</p>
+
+    <!-- ADDED: Search box (no design change to existing elements) -->
+    <div class="card" id="doctor-search-card" aria-label="Doctor search">
+      <div class="p">
+        <label for="doctorSearch" class="small" style="display:block;margin-bottom:.35rem;">Search doctors</label>
+        <input id="doctorSearch" class="search-input" type="search" placeholder="Type a name or specialty (e.g., 'Cardiology', 'Noor')" autocomplete="off" />
+        <div id="searchMeta" class="search-meta" aria-live="polite"></div>
+      </div>
+    </div>
+    <!-- /ADDED -->
+
+    <!-- Popular Doctors in Rajshahi -->
+    <h2>Popular Doctors in Rajshahi</h2>
+    <div class="grid" id="doctorGrid">
+      <!-- 1) Cardiologist: Dr. Md. Rais Uddin Mondol -->
+      <div class="card">
+        <img class="doc-photo"
+             src="https://www.doctorbangladesh.com/wp-content/uploads/2020/09/Dr.-Md.-Rais-Uddin-Mondol.jpg"
+             alt="Assoc. Prof. Dr. Md. Rais Uddin Mondol, Cardiologist (Rajshahi)"
+             width="400" height="520">
+        <div class="p">
+          <h3>Assoc. Prof. Dr. Md. Rais Uddin Mondol</h3>
+          <p><strong>Cardiology</strong> — MBBS, FCPS (Medicine), MD (Cardiology), Fellow (WHO).</p>
+          <p class="small">
+            Associate Professor, Cardiology — Rajshahi Medical College & Hospital (RMCH).<br>
+            Chamber: Popular Diagnostic Center, House #474, Chowdhury Tower, Laxmipur, Rajshahi.<br>
+            Visiting: 4:00–10:00 pm (Fri closed) • Appointment: +8809666787811
+          </p>
+        </div>
+      </div>
+
+      <!-- 2) Cardiologist: Dr. Md. Ayub Ali -->
+      <div class="card">
+        <img class="doc-photo"
+             src="https://www.doctorbangladesh.com/wp-content/uploads/Dr.-Md.-Ayub-Ali.jpg"
+             alt="Assoc. Prof. Dr. Md. Ayub Ali, Cardiologist (Rajshahi)"
+             width="400" height="520">
+        <div class="p">
+          <h3>Assoc. Prof. Dr. Md. Ayub Ali</h3>
+          <p><strong>Cardiology</strong> — MBBS (Dhaka), MCPS (Medicine), MD (Cardiology).</p>
+          <p class="small">
+            Associate Professor, Cardiology — RMCH.<br>
+            Chamber: Biopath Diagnostic Center, Beside Medical College, Sipaipara, Rajshahi.<br>
+            Visiting: 5:00–8:00 pm (Fri closed) • Appointment: +8801308441306
+          </p>
+        </div>
+      </div>
+
+      <!-- 3) Orthopedics: Prof. Dr. B.K. Dam -->
+      <div class="card">
+        <img class="doc-photo"
+             src="https://www.doctorbangladesh.com/wp-content/uploads/Prof.-Dr.-B.K.-Dam.jpg"
+             alt="Prof. Dr. B.K. Dam, Orthopedic Specialist & Trauma Surgeon (Rajshahi)"
+             width="400" height="520">
+        <div class="p">
+          <h3>Prof. Dr. B.K. Dam</h3>
+          <p><strong>Orthopedics & Trauma</strong> — MBBS, MS (Ortho Surgery), FICS (USA), Member (AAOS).</p>
+          <p class="small">
+            Principal & Head, Orthopedic Surgery — Barind Medical College & Hospital.<br>
+            Chamber: City Diagnostic Center, Beside Education Board, Greater Road, Laxmipur, Rajshahi.<br>
+            Visiting: 7:00–8:00 am & 5:00–8:00 pm (Fri closed) • Appointment: +8801714228295
+          </p>
+        </div>
+      </div>
+
+      <!-- 4) Neuromedicine: Prof. Dr. Md. Kafil Uddin -->
+      <div class="card">
+        <img class="doc-photo"
+             src="https://www.doctorbangladesh.com/wp-content/uploads/Prof.-Dr.-Md.-Kafil-Uddin.jpg"
+             alt="Prof. Dr. Md. Kafil Uddin, Neuromedicine Specialist (Rajshahi)"
+             width="400" height="520">
+        <div class="p">
+          <h3>Prof. Dr. Md. Kafil Uddin</h3>
+          <p><strong>Neurology / Neuromedicine</strong> — MBBS, MCPS (Medicine), MD (Neurology).</p>
+          <p class="small">
+            Professor & Head, Neuromedicine — RMCH.<br>
+            Chamber: Popular Diagnostic Center, House #474, Chowdhury Tower, Laxmipur, Rajshahi.<br>
+            Visiting: 5:00–11:00 pm (Sat, Sun, Thu) • 10:00–11:00 pm (Mon, Tue, Wed) • Appointment: +8809666787811
+          </p>
+        </div>
+      </div>
+
+      <!-- 5) Gastroenterology: Prof. Dr. Md. Abdul Alim -->
+      <div class="card">
+        <img class="doc-photo"
+             src="https://bangladeshhealthalliance.com/wp-content/uploads/2023/02/Prof.-Dr.-Md.-Abdul-Alim-194x262.jpg"
+             alt="Prof. Dr. Md. Abdul Alim, Gastroenterology & Liver Medicine (Rajshahi)"
+             width="400" height="520">
+        <div class="p">
+          <h3>Prof. Dr. Md. Abdul Alim</h3>
+          <p><strong>Gastroenterology & Liver Medicine</strong> — MBBS, FCPS (Medicine), MD (Gastroenterology), FACP (USA).</p>
+          <p class="small">
+            Professor, Gastroenterology — RMCH.<br>
+            Chamber: Labaid Diagnostic, House #621, Shershah Road, Rajpara, Laxmipur, Rajshahi – 6000.<br>
+            Visiting: 5:00–9:00 pm (Fri closed) • Appointment: +8801766661144
+          </p>
+        </div>
+      </div>
+
+      <!-- 6) Gynecology & Obstetrics: Dr. Noor-E-Atia Lovely -->
+      <div class="card">
+        <img class="doc-photo"
+             src="https://bangladeshhealthalliance.com/wp-content/uploads/2023/07/Dr.-Noor-E-Atia-Lovely-194x262.jpg"
+             alt="Dr. Noor-E-Atia Lovely, Gynecology & Obstetrics (Rajshahi)"
+             width="400" height="520">
+        <div class="p">
+          <h3>Dr. Noor-E-Atia Lovely</h3>
+          <p><strong>Gynecology & Obstetrics</strong> — MBBS, BCS (Health), FCPS (OBGYN).</p>
+          <p class="small">
+            Resident Surgeon (Gynae & Obs) — RMCH.<br>
+            Chambers:<br>
+            • Islami Bank Hospital, Medical Mor, Laxmipur — 2:30–8:00 pm (Fri closed) • Apt: +8801777242536<br>
+            • Labaid Diagnostic, House #621, Shershah Road — 2:30–6:00 pm (Fri closed) • Apt: +8801766661144
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <h2>General Guidelines</h2>
+    <div class="card"><div class="p">
+      <ul style="margin-left:1rem;list-style:disc">
+        <li>150–300 minutes of moderate activity weekly; strength train 2–3 days.</li>
+        <li>Balanced diet: whole foods, fiber, lean protein, healthy fats, hydrate well.</li>
+        <li>Sleep 7–9 hours; manage stress with breath-work & mindfulness.</li>
+        <li>If you have chronic conditions, follow your doctor’s plan.</li>
+      </ul>
+    </div></div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container small">
+    © 2025 Health & Fitness Hub — Built with ❤️ for learning (demo).
+  </div>
+</footer>
+
+<!-- ADDED: tiny inline script for live filtering -->
+<script>
+  (function () {
+    const input = document.getElementById('doctorSearch');
+    const grid = document.getElementById('doctorGrid');
+    const meta = document.getElementById('searchMeta');
+    if (!input || !grid) return;
+
+    const cards = Array.from(grid.querySelectorAll('.card'))
+      .filter(card => card.querySelector('h3')); // only doctor cards
+
+    function updateCounts(visibleCount) {
+      if (!meta) return;
+      const total = cards.length;
+      if (!input.value.trim()) {
+        meta.textContent = `Showing all ${total} doctors.`;
+      } else {
+        meta.textContent = `Showing ${visibleCount} of ${total} doctors for “${input.value.trim()}”.`;
+      }
+    }
+
+    function applyFilter(q) {
+      const query = q.trim().toLowerCase();
+      let visible = 0;
+      cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        const show = !query || text.includes(query);
+        card.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+      updateCounts(visible);
+    }
+
+    input.addEventListener('input', () => applyFilter(input.value));
+    // initialize state
+    applyFilter('');
+  })();
+</script>
+<!-- /ADDED -->
+
+</body>
+</html>

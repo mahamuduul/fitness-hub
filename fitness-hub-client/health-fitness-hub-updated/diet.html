@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Diet Plans — Balanced Weight Gain & Loss</title>
+
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <script defer src="assets/js/main.js"></script>
+
+  <style>
+    /* Page-local polish while keeping the site theme */
+    .diet-hero {
+      border-radius: 16px;
+      overflow: hidden;
+      padding: clamp(1.25rem, 2.5vw, 2rem);
+      background:
+        radial-gradient(800px 400px at 15% -10%, rgba(66,153,225,.15) 0%, transparent 60%),
+        radial-gradient(800px 400px at 90% 10%, rgba(72,187,120,.15) 0%, transparent 60%),
+        linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+      display: grid;
+      gap: 1rem;
+    }
+    .diet-hero h1 { margin: 0 0 .25rem 0; letter-spacing: .2px; }
+    .diet-hero p.lead { margin: 0; opacity: .85; max-width: 65ch; }
+    .badges { display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.5rem }
+    .badge-soft {
+      display:inline-flex; align-items:center; gap:.4rem;
+      padding:.35rem .6rem; border-radius: 999px; font-weight:600; font-size:.9rem;
+      background:#edf2f7; color:#2d3748; border:1px solid #e2e8f0;
+    }
+
+    /* Calculator */
+    .form-grid { display:grid; gap:.75rem; }
+    @media (min-width: 640px) { .form-grid { grid-template-columns: repeat(2, 1fr); } }
+    .form-grid .full { grid-column: 1/-1; }
+    label span { display:block; font-size:.92rem; margin-bottom:.25rem; }
+    input[type="number"], select {
+      width: 100%; padding:.55rem .6rem; border-radius:10px; border:1px solid #e2e8f0; background:#fff;
+    }
+    .btn {
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.6rem .95rem; border-radius:10px; border:1px solid #2b6cb0;
+      background:#2b6cb0; color:#fff; font-weight:700; text-decoration:none;
+    }
+    .btn.secondary { border-color:#e2e8f0; background:#fff; color:#1a202c; }
+    .kpi { display:grid; gap:.5rem; }
+    @media (min-width: 640px) { .kpi { grid-template-columns: repeat(3, 1fr); } }
+    .kpi .cell {
+      border:1px solid #e2e8f0; border-radius:12px; padding:.75rem; background:#fff;
+    }
+    .kpi .cell h4 { margin:.15rem 0; font-size:1.1rem }
+    .kpi .muted { font-size:.85rem; opacity:.75 }
+
+    /* Macro bars */
+    .macro-bars { display:grid; gap:.5rem; margin-top:.5rem; }
+    .bar { height:10px; background:#edf2f7; border-radius:999px; overflow:hidden; }
+    .bar > span { display:block; height:100%; background:#2b6cb0; }
+    .legend { display:flex; gap:1rem; flex-wrap:wrap; font-size:.9rem; opacity:.85 }
+    .chip { display:inline-flex; align-items:center; gap:.4rem; }
+    .chip i { width:10px; height:10px; border-radius:2px; display:inline-block; }
+    .c-pro { background:#2b6cb0 }
+    .c-fat { background:#ed8936 }
+    .c-carb { background:#38a169 }
+
+    /* Checklists */
+    .checklist { margin: 0; padding-left: 1rem; }
+    .checklist li { margin:.35rem 0; }
+
+    /* Tables */
+    .table { width:100%; border-collapse: collapse; font-size:.95rem; }
+    .table th, .table td { border:1px solid #e2e8f0; padding:.5rem .6rem; text-align:left; }
+    .table th { background:#f7fafc; }
+
+    .note { font-size:.9rem; opacity:.8 }
+
+    /* ----- IMAGE BESIDE CALCULATOR (same row, taller & framed, show full image) ----- */
+    /* Make the first grid (calculator + image) a 2-column layout on large screens,
+       with calculator a bit wider than the image for balance. */
+    .two-col { display: grid; gap: 1rem; }
+    @media (min-width: 1024px){
+      .two-col { grid-template-columns: 1.2fr 1fr; align-items: stretch; }
+    }
+
+    .ill-card .p { display: grid; gap: .5rem; height: 100%; }
+    .ill-wrap{
+      position:relative;
+      border-radius:12px;
+      overflow:hidden;
+      padding:10px;                /* inner frame padding */
+      background:#fff;             /* frame background */
+      border:1px solid #e2e8f0;    /* subtle border */
+      box-shadow:0 8px 20px rgba(0,0,0,.06);
+      height: clamp(360px, 48vh, 620px);  /* TALLER area so the whole image is visible */
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .ill-img{
+      max-width:100%;
+      max-height:100%;
+      width:auto;
+      height:auto;
+      object-fit:contain;          /* show the entire image */
+      display:block;
+    }
+    .ill-cap { font-size:.9rem; opacity:.8 }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <div class="nav container">
+    <a class="brand" href="index.html">
+      <span class="">
+        <img src="https://static1.squarespace.com/static/67ac789e2722625ed79275f7/t/68129b75dca49a402ddb2f5e/1746049648239/" alt="Health & Fitness Hub Logo" width="28" height="28" style="vertical-align:middle;margin-right:8px"></span> Health & Fitness Hub
+    </a>
+    <button class="menu-toggle" aria-label="Toggle menu">☰ Menu</button>
+    <ul>
+      <li><a href="gym.html">Gyms</a></li>
+      <li><a href="medical.html">Medical</a></li>
+      <li><a href="nutrition.html">Nutrition</a></li>
+      <li><a href="mind.html">Mind</a></li>
+      <li><a class="active" href="diet.html">Diet Plans</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="register.html">Register</a></li>
+      <li><a class="link-admin hidden" href="admin.html">Admin</a></li>
+      <li><a class="link-login" href="login.html">Login</a></li>
+      <li><a class="link-logout hidden" href="#" onclick="logout()">Logout</a></li>
+    </ul>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+
+    <!-- HERO -->
+    <div class="diet-hero">
+      <div>
+        <h1>Diet Plans</h1>
+        <p class="lead">Use the calculator to get your daily calories and macros. Then choose a <strong>Weight Loss</strong> or <strong>Weight Gain</strong> plan with sample days and practical food swaps.</p>
+        <div class="badges">
+          <span class="badge-soft">Mifflin–St Jeor</span>
+          <span class="badge-soft">Evidence-based protein</span>
+          <span class="badge-soft">Bangla-friendly meals</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CALCULATOR + IMAGE (same row) -->
+    <div class="two-col" style="margin-top:1.25rem">
+      <!-- Calculator -->
+      <div class="card calc-card">
+        <div class="p">
+          <h2>Calories & Macros Calculator</h2>
+          <p class="small">Fill your details → <strong>Calculate</strong>. Choose a goal to see targets.</p>
+
+          <div class="form-grid">
+            <label>
+              <span>Sex</span>
+              <select id="sex">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+            </label>
+            <label>
+              <span>Age (years)</span>
+              <input id="age" type="number" min="10" max="100" value="25"/>
+            </label>
+            <label>
+              <span>Height (cm)</span>
+              <input id="height" type="number" min="120" max="230" value="170"/>
+            </label>
+            <label>
+              <span>Weight (kg)</span>
+              <input id="weight" type="number" min="30" max="200" value="70"/>
+            </label>
+            <label class="full">
+              <span>Activity</span>
+              <select id="activity">
+                <option value="1.2">Sedentary (office, little exercise)</option>
+                <option value="1.375">Light (1–3 days/week)</option>
+                <option value="1.55" selected>Moderate (3–5 days/week)</option>
+                <option value="1.725">Active (6–7 days/week)</option>
+                <option value="1.9">Very Active (physical job + training)</option>
+              </select>
+            </label>
+            <label>
+              <span>Goal</span>
+              <select id="goal">
+                <option value="maintain">Maintain</option>
+                <option value="loss">Weight Loss</option>
+                <option value="gain">Weight Gain</option>
+              </select>
+            </label>
+            <label>
+              <span>Protein (g/kg)</span>
+              <input id="proteinPerKg" type="number" step="0.1" min="1.2" max="2.5" value="1.8"/>
+            </label>
+          </div>
+
+          <div style="margin-top:.75rem; display:flex; gap:.5rem; flex-wrap:wrap">
+            <button class="btn" id="calcBtn">Calculate</button>
+            <button class="btn secondary" id="resetBtn">Reset</button>
+          </div>
+
+          <div class="kpi" style="margin-top:1rem">
+            <div class="cell">
+              <div class="muted">BMR</div>
+              <h4 id="bmrOut">— kcal</h4>
+              <div class="muted">Basal Metabolic Rate</div>
+            </div>
+            <div class="cell">
+              <div class="muted">TDEE</div>
+              <h4 id="tdeeOut">— kcal</h4>
+              <div class="muted">Daily energy with activity</div>
+            </div>
+            <div class="cell">
+              <div class="muted">Target Calories</div>
+              <h4 id="targetKcalOut">— kcal</h4>
+              <div class="muted"><span id="goalLabel">Select goal</span></div>
+            </div>
+          </div>
+
+          <div style="margin-top:.75rem" id="macrosWrap" class="hidden">
+            <div class="legend" style="margin-bottom:.25rem">
+              <span class="chip"><i class="c-pro"></i>Protein: <span id="proG">—</span> g</span>
+              <span class="chip"><i class="c-fat"></i>Fat: <span id="fatG">—</span> g</span>
+              <span class="chip"><i class="c-carb"></i>Carbs: <span id="carbG">—</span> g</span>
+            </div>
+            <div class="macro-bars">
+              <div class="bar"><span id="proBar" style="width:0%; background:#2b6cb0"></span></div>
+              <div class="bar"><span id="fatBar" style="width:0%; background:#ed8936"></span></div>
+              <div class="bar"><span id="carbBar" style="width:0%; background:#38a169"></span></div>
+            </div>
+            <p class="note" style="margin-top:.35rem">Macro model: Protein = <span id="ppkLabel">1.8</span> g/kg • Fat ≈ 25% kcal • Carbs = remaining kcal.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image (same row, taller frame, full image visible) -->
+      <div class="card ill-card">
+        <div class="p">
+          <h2 style="margin-bottom:.25rem">Balanced Diet Chart</h2>
+          <div class="ill-wrap">
+            <img class="ill-img" src="assets/images/diet_2.jpeg" alt="Balanced diet chart for all age groups: example calories & focus areas">
+          </div>
+          <p class="ill-cap">A quick visual overview to pair with your calculator. Keep portions flexible and meals balanced across protein, carbs, healthy fats, and veggies.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PLANS -->
+    <h2 style="margin-top:1.5rem">Choose Your Plan</h2>
+    <div class="grid">
+      <!-- Weight Gain -->
+      <div class="card">
+        <div class="p">
+          <h3>Weight Gain (Clean Bulk)</h3>
+          <ul class="checklist">
+            <li>Target: <strong>+250 to +350 kcal/day</strong> above TDEE.</li>
+            <li>Protein: <strong>1.6–2.2 g/kg</strong>; distribute over 3–5 meals.</li>
+            <li>Prioritize carb sources around training (rice, potatoes, roti, fruit).</li>
+            <li>Healthy fats: nuts, avocado, eggs, fish, olive/mustard oil.</li>
+          </ul>
+          <table class="table" style="margin-top:.5rem">
+            <thead><tr><th>Meal</th><th>Example</th></tr></thead>
+            <tbody>
+              <tr><td>Breakfast</td><td>Milk oats + banana + peanut butter</td></tr>
+              <tr><td>Lunch</td><td>Steamed rice + chicken/fish + vegetables</td></tr>
+              <tr><td>Snack</td><td>Yogurt + fruit + mixed nuts</td></tr>
+              <tr><td>Dinner</td><td>Roti + egg curry/paneer + salad</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Weight Loss -->
+      <div class="card">
+        <div class="p">
+          <h3>Weight Loss (Cut)</h3>
+          <ul class="checklist">
+            <li>Target: <strong>–400 to –600 kcal/day</strong> below TDEE.</li>
+            <li>Protein: <strong>1.6–2.2 g/kg</strong> to keep muscle.</li>
+            <li>High-volume foods: lentils, veggies, yogurt, lean meats, fruit.</li>
+            <li>Plan snacks: fruit, boiled eggs, chana, air-popped popcorn.</li>
+          </ul>
+          <table class="table" style="margin-top:.5rem">
+            <thead><tr><th>Meal</th><th>Example</th></tr></thead>
+            <tbody>
+              <tr><td>Breakfast</td><td>Greek yogurt + oats + berries</td></tr>
+              <tr><td>Lunch</td><td>Rice/khichuri + grilled fish + mixed veggies</td></tr>
+              <tr><td>Snack</td><td>Lentil soup / chana chaat</td></tr>
+              <tr><td>Dinner</td><td>Roti + chicken & salad (light oil)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- SAMPLE DAYS -->
+    <h2 style="margin-top:1.5rem">Sample Day — Plug In Your Targets</h2>
+    <div class="grid">
+      <div class="card"><div class="p">
+        <h3>Sample Day (Loss)</h3>
+        <p class="small">Approximate macros per 100 g portions — adjust to your calories.</p>
+        <table class="table">
+          <thead><tr><th>Meal</th><th>Portion</th><th>Macros (approx.)</th></tr></thead>
+          <tbody>
+            <tr><td>Oats + Yogurt + Fruit</td><td>Oats 40 g + Yogurt 150 g + Fruit 100 g</td><td>~370 kcal • P 19 g • C 57 g • F 8 g</td></tr>
+            <tr><td>Rice + Fish + Veg</td><td>Rice 150 g + Fish 120 g + Veg 150 g</td><td>~530 kcal • P 33 g • C 73 g • F 12 g</td></tr>
+            <tr><td>Chana Chaat</td><td>Chickpeas 120 g + Veg 80 g</td><td>~260 kcal • P 12 g • C 40 g • F 4 g</td></tr>
+            <tr><td>Roti + Chicken + Salad</td><td>2 roti + Chicken 120 g + Salad</td><td>~520 kcal • P 35 g • C 60 g • F 12 g</td></tr>
+          </tbody>
+        </table>
+      </div></div>
+
+      <div class="card"><div class="p">
+        <h3>Sample Day (Gain)</h3>
+        <p class="small">Higher energy density, same whole-food base.</p>
+        <table class="table">
+          <thead><tr><th>Meal</th><th>Portion</th><th>Macros (approx.)</th></tr></thead>
+          <tbody>
+            <tr><td>Milk Oats + Banana + PB</td><td>Oats 60 g + Milk 250 ml + Banana + PB 15 g</td><td>~630 kcal • P 25 g • C 90 g • F 18 g</td></tr>
+            <tr><td>Rice + Chicken + Veg</td><td>Rice 200 g + Chicken 150 g + Veg 150 g</td><td>~720 kcal • P 48 g • C 95 g • F 16 g</td></tr>
+            <tr><td>Yogurt + Nuts + Fruit</td><td>Yogurt 200 g + Nuts 20 g + Fruit 100 g</td><td>~380 kcal • P 12 g • C 38 g • F 18 g</td></tr>
+            <tr><td>Roti + Egg Curry + Salad</td><td>3 roti + Eggs 2 + Salad</td><td>~700 kcal • P 32 g • C 95 g • F 20 g</td></tr>
+          </tbody>
+        </table>
+      </div></div>
+    </div>
+
+    <!-- TIPS -->
+    <h2 style="margin-top:1.5rem">Smart Habits</h2>
+    <div class="grid">
+      <div class="card"><div class="p">
+        <h3>Hydration</h3>
+        <ul class="checklist">
+          <li>2–3 L/day baseline; more if hot or training.</li>
+          <li>Include watery foods: cucumber, oranges, soups.</li>
+          <li>Spread intake; check urine is pale straw color.</li>
+        </ul>
+      </div></div>
+      <div class="card"><div class="p">
+        <h3>Meal Prep</h3>
+        <ul class="checklist">
+          <li>Cook basics (rice, lentils, chicken) in batches 2–3×/week.</li>
+          <li>Keep quick add-ons: eggs, frozen veggies, yogurt, fruit, nuts.</li>
+          <li>Plan 1–2 “fallback” meals for busy days.</li>
+        </ul>
+      </div></div>
+      <div class="card"><div class="p">
+        <h3>Consistency</h3>
+        <ul class="checklist">
+          <li>Hit protein daily; allow 10–15% calorie wiggle room.</li>
+          <li>Lift 2–4×/week + 5–8k steps/day for best results.</li>
+          <li>Sleep 7–9 h; manage stress (see <a href="mind.html">Mind</a>).</li>
+        </ul>
+      </div></div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container small">
+    © 2025 Health & Fitness Hub — Built with ❤️ for learning (demo).
+  </div>
+</footer>
+
+<script>
+/* ---- Calculator logic (Mifflin–St Jeor + basic macro model) ---- */
+(function() {
+  const $ = (id) => document.getElementById(id);
+  const sex = $('sex'), age = $('age'), height = $('height'), weight = $('weight');
+  const activity = $('activity'), goal = $('goal'), proteinPerKg = $('proteinPerKg');
+  const bmrOut = $('bmrOut'), tdeeOut = $('tdeeOut'), targetKcalOut = $('targetKcalOut'), goalLabel = $('goalLabel');
+  const proG = $('proG'), fatG = $('fatG'), carbG = $('carbG');
+  const proBar = $('proBar'), fatBar = $('fatBar'), carbBar = $('carbBar');
+  const ppkLabel = $('ppkLabel');
+  const macrosWrap = $('macrosWrap');
+  const calcBtn = $('calcBtn'), resetBtn = $('resetBtn');
+
+  function clamp(v, min, max) { return Math.min(max, Math.max(min, v)); }
+
+  function calc() {
+    const s = sex.value;
+    const A = clamp(parseFloat(age.value)||25, 10, 100);
+    const H = clamp(parseFloat(height.value)||170, 120, 230);
+    const W = clamp(parseFloat(weight.value)||70, 30, 200);
+    const mult = parseFloat(activity.value)||1.55;
+    const ppk = clamp(parseFloat(proteinPerKg.value)||1.8, 1.2, 2.5);
+
+    // Mifflin–St Jeor
+    const BMR = (s === 'male') ? (10*W + 6.25*H - 5*A + 5) : (10*W + 6.25*H - 5*A - 161);
+    const TDEE = BMR * mult;
+
+    // Target calories by goal
+    let target = TDEE;
+    let label = 'Maintenance';
+    if (goal.value === 'loss') { target = TDEE - 500; label = 'Weight Loss (≈ −500 kcal/day)'; }
+    if (goal.value === 'gain') { target = TDEE + 300; label = 'Weight Gain (≈ +300 kcal/day)'; }
+    target = Math.max(1200, target); // basic floor
+
+    // Macro model
+    const protein_g = Math.round(ppk * W);                 // protein in grams
+    const protein_kcal = protein_g * 4;
+    const fat_kcal = Math.round(target * 0.25);            // 25% calories from fat
+    const fat_g = Math.round(fat_kcal / 9);
+    const carbs_kcal = Math.max(0, Math.round(target - protein_kcal - fat_kcal));
+    const carbs_g = Math.round(carbs_kcal / 4);
+
+    // Outputs
+    bmrOut.textContent = Math.round(BMR) + ' kcal';
+    tdeeOut.textContent = Math.round(TDEE) + ' kcal';
+    targetKcalOut.textContent = Math.round(target) + ' kcal';
+    goalLabel.textContent = label;
+
+    proG.textContent = protein_g;
+    fatG.textContent = fat_g;
+    carbG.textContent = carbs_g;
+
+    const totalG = protein_g + fat_g + carbs_g || 1;
+    proBar.style.width = (protein_g/totalG*100).toFixed(0) + '%';
+    fatBar.style.width = (fat_g/totalG*100).toFixed(0) + '%';
+    carbBar.style.width = (carbs_g/totalG*100).toFixed(0) + '%';
+
+    macrosWrap.classList.remove('hidden');
+  }
+
+  function reset() {
+    sex.value = 'male';
+    age.value = 25; height.value = 170; weight.value = 70;
+    activity.value = '1.55'; goal.value = 'maintain'; proteinPerKg.value = 1.8;
+    bmrOut.textContent = '— kcal'; tdeeOut.textContent = '— kcal';
+    targetKcalOut.textContent = '— kcal'; goalLabel.textContent = 'Select goal';
+    macrosWrap.classList.add('hidden');
+  }
+
+  calcBtn.addEventListener('click', calc);
+  resetBtn.addEventListener('click', reset);
+})();
+</script>
+
+</body>
+</html>

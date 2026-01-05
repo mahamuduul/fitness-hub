@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Contact / Queries</title>
+
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="stylesheet" href="assets/css/style.css"/>
+<script defer src="assets/js/main.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", ()=>{
+      const form = document.getElementById("contactForm");
+      const status = document.getElementById("status");
+      form.addEventListener("submit", (e)=>{
+        e.preventDefault();
+        const data = Object.fromEntries(new FormData(form).entries());
+        if(!data.name || !data.email || !data.message){
+          status.textContent = "Please fill all fields."; status.className = "error"; return;
+        }
+        saveMessage(data);
+        form.reset();
+        status.textContent = "Message sent (saved locally)."; status.className = "success";
+      });
+    });
+  </script>
+</head>
+<body>
+
+<header class="header">
+  <div class="nav container">
+    <a class="brand" href="index.html">
+      <!-- ADDED: logo image (kept everything else unchanged) -->
+
+      <span class="">
+        <img src="https://static1.squarespace.com/static/67ac789e2722625ed79275f7/t/68129b75dca49a402ddb2f5e/1746049648239/" alt="Health & Fitness Hub Logo" width="28" height="28" style="vertical-align:middle;margin-right:8px"></span> Health & Fitness Hub
+    </a>
+    <button class="menu-toggle" aria-label="Toggle menu">☰ Menu</button>
+    <ul>
+      <li><a href="gym.html">Gyms</a></li>
+      <li><a href="medical.html">Medical</a></li>
+      <li><a href="nutrition.html">Nutrition</a></li>
+      <li><a href="mind.html">Mind</a></li>
+      <li><a href="diet.html">Diet Plans</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="register.html">Register</a></li>
+      <li><a class="link-admin hidden" href="admin.html">Admin</a></li>
+      <li><a class="link-login" href="login.html">Login</a></li>
+      <li><a class="link-logout hidden" href="#" onclick="logout()">Logout</a></li>
+    </ul>
+  </div>
+</header>
+
+  <section class="section">
+    <div class="container">
+      <h1>Contact / Queries</h1>
+      <div class="card"><div class="p">
+        <form id="contactForm">
+          <div>
+            <label for="name">Name</label>
+            <input id="name" name="name" placeholder="Your name"/>
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com"/>
+          </div>
+          <div>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Type your question..."></textarea>
+          </div>
+          <button class="primary" type="submit">Send</button>
+          <span id="status" class="small" style="margin-left:.75rem"></span>
+        </form>
+      </div></div>
+    </div>
+  </section>
+
+<footer class="footer">
+  <div class="container small">
+    © 2025 Health & Fitness Hub — Built with ❤️ for learning (demo).
+  </div>
+</footer>
+
+</body>
+</html>

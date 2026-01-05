@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>About / Why Us — Health & Fitness Hub</title>
+
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <script defer src="assets/js/main.js"></script>
+
+  <style>
+    /* Page-local polish while keeping the global theme */
+    .hero {
+      border-radius: 16px;
+      overflow: hidden;
+      padding: clamp(1.25rem, 2.5vw, 2rem);
+      background:
+        radial-gradient(900px 420px at 10% -10%, rgba(66,153,225,.14) 0%, transparent 60%),
+        radial-gradient(900px 420px at 90% 10%, rgba(72,187,120,.14) 0%, transparent 60%),
+        linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+      display: grid;
+      gap: .75rem;
+    }
+    .hero h1 { margin: 0 0 .25rem 0; letter-spacing: .2px; }
+    .lead { margin: 0; opacity: .85; max-width: 68ch; }
+    .hero-cta { display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.5rem }
+    .btn {
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.6rem .95rem; border-radius:10px; border:1px solid #2b6cb0;
+      background:#2b6cb0; color:#fff; font-weight:700; text-decoration:none;
+    }
+    .btn.secondary { border-color:#e2e8f0; background:#fff; color:#1a202c; }
+
+    /* Icon helpers (inline SVGs) */
+    .icon {
+      width: 24px; height: 24px; display:inline-block;
+    }
+    .icon-wrap {
+      width:40px; height:40px; border-radius:10px; display:grid; place-items:center;
+      background:#edf2f7; border:1px solid #e2e8f0; margin-bottom:.25rem;
+    }
+
+    .kpi { display:grid; gap:.5rem; }
+    @media (min-width: 640px) { .kpi { grid-template-columns: repeat(4, 1fr); } }
+    .kpi .card .p h3 { margin:.15rem 0 .25rem 0; }
+    .muted { opacity:.75; }
+
+    .list { margin:0; padding-left:1rem; }
+    .list li { margin:.35rem 0; }
+
+    details summary { cursor: pointer; font-weight: 700; }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <div class="nav container">
+    <a class="brand" href="index.html">
+      <!-- ADDED: logo image (kept everything else unchanged) -->
+
+      <span class="">
+        <img src="https://static1.squarespace.com/static/67ac789e2722625ed79275f7/t/68129b75dca49a402ddb2f5e/1746049648239/" alt="Health & Fitness Hub Logo" width="28" height="28" style="vertical-align:middle;margin-right:8px"></span> Health & Fitness Hub
+    </a>
+    <button class="menu-toggle" aria-label="Toggle menu">☰ Menu</button>
+    <ul>
+      <li><a href="gym.html">Gyms</a></li>
+      <li><a href="medical.html">Medical</a></li>
+      <li><a href="nutrition.html">Nutrition</a></li>
+      <li><a href="mind.html">Mind</a></li>
+      <li><a href="diet.html">Diet Plans</a></li>
+      <li><a class="active" href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="register.html">Register</a></li>
+      <li><a class="link-admin hidden" href="admin.html">Admin</a></li>
+      <li><a class="link-login" href="login.html">Login</a></li>
+      <li><a class="link-logout hidden" href="#" onclick="logout()">Logout</a></li>
+    </ul>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+
+    <!-- HERO -->
+    <div class="hero">
+      <h1>About Us — Why Choose Health & Fitness Hub?</h1>
+      <p class="lead">
+        One clean place for your healthy life: local gyms, trusted doctors, accurate nutrition, mindful practice, and practical diet planning—aligned with a modern, fast experience.
+      </p>
+      <div class="hero-cta">
+        <a class="btn" href="mind.html">Start a 5-min Breath</a>
+        <a class="btn secondary" href="diet.html">Calculate Your Macros</a>
+      </div>
+    </div>
+
+    <!-- QUICK STATS -->
+    <div class="kpi" style="margin-top:1rem">
+      <div class="card"><div class="p">
+        <div class="icon-wrap">
+          <!-- heart -->
+          <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M19.5 4.5a5 5 0 0 1 0 7.07L12 19.07l-7.5-7.5a5 5 0 0 1 7.07-7.07L12 5.93l.43-.43a5 5 0 0 1 7.07 0Z" stroke="#2b6cb0" stroke-width="1.5"/></svg>
+        </div>
+        <h3>Holistic</h3>
+        <p class="muted">Gyms, doctors, nutrition, yoga & diet—together.</p>
+      </div></div>
+      <div class="card"><div class="p">
+        <div class="icon-wrap">
+          <!-- map pin -->
+          <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z" stroke="#2b6cb0" stroke-width="1.5"/><circle cx="12" cy="10" r="2.5" stroke="#2b6cb0" stroke-width="1.5"/></svg>
+        </div>
+        <h3>Local Focus</h3>
+        <p class="muted">Bangladesh-friendly examples & practical details.</p>
+      </div></div>
+      <div class="card"><div class="p">
+        <div class="icon-wrap">
+          <!-- spark -->
+          <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M12 3v6m0 6v6M3 12h6m6 0h6M6 6l4.5 4.5M13.5 13.5L18 18M6 18l4.5-4.5M13.5 10.5L18 6" stroke="#2b6cb0" stroke-width="1.5"/></svg>
+        </div>
+        <h3>Fast & Clean</h3>
+        <p class="muted">Lightweight pages, responsive cards, minimal clutter.</p>
+      </div></div>
+      <div class="card"><div class="p">
+        <div class="icon-wrap">
+          <!-- shield -->
+          <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v6c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V6l7-3Z" stroke="#2b6cb0" stroke-width="1.5"/></svg>
+        </div>
+        <h3>Practical & Safe</h3>
+        <p class="muted">Clear disclaimers; content designed to guide, not replace care.</p>
+      </div></div>
+    </div>
+
+    <!-- WHY US -->
+    <h2 style="margin-top:1.25rem">Why Us</h2>
+    <div class="grid">
+      <div class="card"><div class="p">
+        <h3>All-in-one Experience</h3>
+        <ul class="list">
+          <li>Find gyms & see locations fast.</li>
+          <li>Browse popular doctors with chambers/hours.</li>
+          <li>Nutrition cards with per-100 g macros.</li>
+        </ul>
+      </div></div>
+      <div class="card"><div class="p">
+        <h3>Evidence-Informed</h3>
+        <ul class="list">
+          <li>Reasonable macro targets (protein-forward).</li>
+          <li>Breathing patterns used by coaches & clinics.</li>
+          <li>Simple, trackable routines you’ll keep.</li>
+        </ul>
+      </div></div>
+      <div class="card"><div class="p">
+        <h3>Made for Busy People</h3>
+        <ul class="list">
+          <li>5–10 minute yoga flows & breath sessions.</li>
+          <li>Quick meal ideas & batch-prep tips.</li>
+          <li>Clean navigation, mobile-first.</li>
+        </ul>
+      </div></div>
+      <div class="card"><div class="p">
+        <h3>Theme-Consistent Design</h3>
+        <ul class="list">
+          <li>Cards, grids & headers match across pages.</li>
+          <li>Inline SVG icons (no broken images).</li>
+          <li>Accessible text and contrast.</li>
+        </ul>
+      </div></div>
+      <div class="card"><div class="p">
+        <h3>Actionable Tools</h3>
+        <ul class="list">
+          <li><a href="diet.html">Calories & Macros Calculator</a>.</li>
+          <li><a href="mind.html">Guided breathing widget</a>.</li>
+          <li>Gym maps that switch location on click.</li>
+        </ul>
+      </div></div>
+      <div class="card"><div class="p">
+        <h3>Local & Adaptable</h3>
+        <ul class="list">
+          <li>Bangla-friendly food examples.</li>
+          <li>Chambers/visiting hours where available.</li>
+          <li>Easily extend with your own data.</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <h2 style="margin-top:1.25rem">How It Works</h2>
+    <div class="grid">
+      <div class="card"><div class="p">
+        <h3>1) Check Your Baseline</h3>
+        <p>Open the <a href="diet.html">calculator</a> to get calories & macros that fit your life and activity.</p>
+      </div></div>
+      <div class="card"><div class="p">
+        <h3>2) Pick Simple Routines</h3>
+        <p>Try a 5-minute breath, a short yoga flow, and 2–3 easy meals you can repeat.</p>
+      </div></div>
+      <div class="card"><div class="p">
+        <h3>3) Iterate Weekly</h3>
+        <p>Adjust calories ±200–300 kcal, keep protein steady, and track small wins.</p>
+      </div></div>
+    </div>
+
+    <!-- VALUES -->
+    <h2 style="margin-top:1.25rem">Our Values</h2>
+    <div class="grid">
+      <div class="card"><div class="p">
+        <h3>Clarity</h3>
+        <p>No fluff—just the steps that matter.</p>
+      </div></div>
+      <div class="card"><div class="p">
+        <h3>Consistency</h3>
+        <p>Small daily actions beat big once-a-week efforts.</p>
+      </div></div>
+      <div class="card"><div class="p">
+        <h3>Community</h3>
+        <p>Built to be shared, adapted, and improved together.</p>
+      </div></div>
+    </div>
+
+    <!-- TESTIMONIALS -->
+    <h2 style="margin-top:1.25rem">What People Say</h2>
+    <div class="grid">
+      <div class="card"><div class="p">
+        <blockquote style="margin:0">
+          “The macros calculator + simple meals made fat loss finally click for me.”
+        </blockquote>
+        <p class="muted">— R., beginner lifter</p>
+      </div></div>
+      <div class="card"><div class="p">
+        <blockquote style="margin:0">
+          “Five-minute breathing between meetings is my new superpower.”
+        </blockquote>
+        <p class="muted">— S., software engineer</p>
+      </div></div>
+      <div class="card"><div class="p">
+        <blockquote style="margin:0">
+          “Love the local flavor—food ideas feel familiar and easy.”
+        </blockquote>
+        <p class="muted">— M., Rajshahi</p>
+      </div></div>
+    </div>
+
+    <!-- FAQ -->
+    <h2 style="margin-top:1.25rem">FAQ</h2>
+    <div class="grid">
+      <div class="card"><div class="p">
+        <details>
+          <summary>Is this medical advice?</summary>
+          <p>No. It’s educational. For personal care, consult a licensed physician.</p>
+        </details>
+      </div></div>
+      <div class="card"><div class="p">
+        <details>
+          <summary>How accurate are macros?</summary>
+          <p>They’re estimates based on your inputs—adjust weekly based on results & energy.</p>
+        </details>
+      </div></div>
+      <div class="card"><div class="p">
+        <details>
+          <summary>Can I add my own gyms or doctors?</summary>
+          <p>Yes—extend the HTML cards or hook up a small JSON source later.</p>
+        </details>
+      </div></div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container small">
+    © 2025 Health & Fitness Hub — Built with ❤️ for learning (demo).
+  </div>
+</footer>
+
+</body>
+</html>

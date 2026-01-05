@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Nutrition — Food & Macros</title>
+
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <script defer src="assets/js/main.js"></script>
+
+  <style>
+    /* Card nutrition list */
+    .nutri {
+      margin: 0.25rem 0 0;
+      padding: 0;
+      list-style: none;
+      font-size: 0.95rem;
+      line-height: 1.35rem;
+    }
+    .nutri li { display: inline-block; margin-right: 0.8rem; }
+    .nutri .k { opacity: 0.7; margin-right: 0.25rem; }
+
+    /* Food images: consistent banner-style */
+    .card img.food-photo {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+      display: block;
+      background: #f5f5f5;
+    }
+    @media (min-width: 1024px) {
+      .card img.food-photo { height: 240px; }
+    }
+    .note { font-size: 0.85rem; opacity: .75; margin-top: .75rem; }
+
+    /* ADDED: tiny neutral styles for search input; doesn't affect existing design */
+    .search-input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font: inherit;
+      outline: none;
+    }
+    .search-input:focus { border-color: #aaa; }
+    .search-meta { font-size: 0.9rem; margin-top: .5rem; color: #555; }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <div class="nav container">
+    <a class="brand" href="index.html">
+      <!-- ADDED: logo image (kept everything else unchanged) -->
+
+      <span class="">
+        <img src="https://static1.squarespace.com/static/67ac789e2722625ed79275f7/t/68129b75dca49a402ddb2f5e/1746049648239/" alt="Health & Fitness Hub Logo" width="28" height="28" style="vertical-align:middle;margin-right:8px"></span> Health & Fitness Hub
+    </a>
+    <button class="menu-toggle" aria-label="Toggle menu">☰ Menu</button>
+    <ul>
+      <li><a href="gym.html">Gyms</a></li>
+      <li><a href="medical.html">Medical</a></li>
+      <li><a href="nutrition.html">Nutrition</a></li>
+      <li><a href="mind.html">Mind</a></li>
+      <li><a href="diet.html">Diet Plans</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="register.html">Register</a></li>
+      <li><a class="link-admin hidden" href="admin.html">Admin</a></li>
+      <li><a class="link-login" href="login.html">Login</a></li>
+      <li><a class="link-logout hidden" href="#" onclick="logout()">Logout</a></li>
+    </ul>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <h1>Healthy Foods & Per-100 g Nutrition</h1>
+    <p>Quick macro snapshot for 15 nutritious foods. Values are approximate (USDA-style averages).</p>
+
+    <!-- ADDED: Search box card (keeps your card look & feel) -->
+    <div class="card" id="food-search-card" aria-label="Food search">
+      <div class="p">
+        <label for="foodSearch" class="small" style="display:block;margin-bottom:.35rem;">Search foods</label>
+        <input id="foodSearch" class="search-input" type="search" placeholder="Type a food or nutrient (e.g., 'Salmon', 'Protein', 'Fiber &gt; 5')" autocomplete="off" />
+        <div id="foodSearchMeta" class="search-meta" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <div class="grid" id="foodGrid">
+      <!-- Helper: card template
+        data-src1 = Wikimedia "Special:FilePath" proxied & forced to JPEG (reliable, topical)
+        data-src2 = Named JPEG placeholder with the food name (never breaks)
+      -->
+
+      <!-- 1. Chicken Breast (roasted, skinless) -->
+      <div class="card">
+        <img class="food-photo"
+             alt="Chicken breast (roasted)"
+             data-src1="https://www.allrecipes.com/thmb/PClqnsQ-doMAZo8jLXMXRzpuCkA=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/16160-juicy-grilled-chicken-breasts-ddmfs-5594-hero-3x4-902673c819994c0191442304b40104af.jpg"
+             data-src2="https://placehold.co/1200x800.jpg?text=Chicken+Breast">
+        <div class="p">
+          <h3>Chicken Breast (roasted)</h3>
+          <ul class="nutri"><li><span class="k">kcal</span>165</li><li><span class="k">Protein</span>31 g</li><li><span class="k">Carbs</span>0 g</li><li><span class="k">Fat</span>3.6 g</li><li><span class="k">Fiber</span>0 g</li></ul>
+        </div>
+      </div>
+
+      <!-- 2. Salmon (Atlantic) -->
+      <div class="card">
+        <img class="food-photo"
+             alt="Salmon"
+             data-src1="https://images.weserv.nl/?url=commons.wikimedia.org/wiki/Special:FilePath/Salmon%20Sashimi.jpg&w=1200&h=800&fit=cover&output=jpg"
+             data-src2="https://placehold.co/1200x800.jpg?text=Salmon">
+        <div class="p">
+          <h3>Salmon (Atlantic)</h3>
+          <ul class="nutri"><li><span class="k">kcal</span>208</li><li><span class="k">Protein</span>20 g</li><li><span class="k">Carbs</span>0 g</li><li><span class="k">Fat</span>13 g</li><li><span class="k">Omega-3</span>~2 g</li></ul>
+        </div>
+      </div>
+
+      <!-- 3. Eggs (hard-boiled) -->
+      <div class="card">
+        <img class="food-photo"
+             alt="Boiled eggs"
+             data-src1="https://www.foodtasticmom.com/wp-content/uploads/2016/10/easyeggs-feature.jpg"
+             data-src2="https://placehold.co/1200x800.jpg?text=Boiled+Eggs">
+        <div class="p">
+          <h3>Eggs (hard-boiled)</h3>
+          <ul class="nutri"><li><span class="k">kcal</span>155</li><li><span class="k">Protein</span>13 g</li><li><span class="k">Carbs</span>1.1 g</li><li><span class="k">Fat</span>11 g</li><li><span class="k">Choline</span>~250 mg</li></ul>
+        </div>
+      </div>
+
+      <!-- 4. Greek Yogurt (non-fat) -->
+      <div class="card">
+        <img class="food-photo"
+             alt="Greek yogurt"
+             data-src1="https://cdn.smithbrothersfarms.com/media/0010970_chobani-nonfat-plain-greek-yogurt-32-oz.jpeg"
+             data-src2="https://placehold.co/1200x800.jpg?text=Greek+Yogurt">
+        <div class="p">
+          <h3>Greek Yogurt (non-fat)</h3>
+          <ul class="nutri"><li><span class="k">kcal</span>59</li><li><span class="k">Protein</span>10 g</li><li><span class="k">Carbs</span>3.6 g</li><li><span class="k">Fat</span>0.4 g</li><li><span class="k">Calcium</span>~110 mg</li></ul>
+        </div>
+      </div>
+
+      <!-- 5. Lentils (cooked) -->
+      <div class="card">
+        <img class="food-photo"
+             alt="Lentils"
+             data-src1="https://www.cathysglutenfree.com/wp-content/uploads/2022/05/red-lentils-f.jpg"
+             data-src2="https://placehold.co/1200x800.jpg?text=Lentils">
+        <div class="p">
+          <h3>Lentils (cooked)</h3>
+          <ul class="nutri"><li><span class="k">kcal</span>116</li><li><span class="k">Protein</span>9.0 g</li><li><span class="k">Carbs</span>20.1 g</li><li><span class="k">Fat</span>0.4 g</li><li><span class="k">Fiber</span>7.9 g</li></ul>
+        </div>
+      </div>
+
+      <!-- 6. Chickpeas (cooked) -->
+      <div class="card">
+        <img class="food-photo"
+             alt="Chickpeas"
+             data-src1="https://thishealthykitchen.com/wp-content/uploads/2021/09/Instant-Pot-Chickpeas-No-Soak-Feat-Image-Square.jpg"
+             data-src2="https://placehold.co/1200x800.jpg?text=Chickpeas">
+        <div class="p">
+          <h3>Chickpeas (cooked)</h3>
+          <ul class="nutri"><li><span class="k">kcal</span>164</li><li><span class="k">Protein</span>8.9 g</li><li><span class="k">Carbs</span>27.4 g</li><li><span class="k">Fat</span>2.6 g</li><li><span class="k">Fiber</span>7.6 g</li></ul>
+        </div>
+      </div>
+
+      <!-- 7. Quinoa (cooked) -->
+      <div class="card">
+        <img class="food-photo"
+             alt="Quinoa"
+             data-src1="https://cdn11.bigcommerce.com/s-dis4vxtxtc/images/stencil/original/products/3305/3109/how-to-cook-quinoa.sq_2__40395.1679026738.jpg?c=2"
+             data-src2="https://placehold.co/1200x800.jpg?text=Quinoa">
+        <div class="p">
+          <h3>Quinoa (cooked)</h3>
+          <ul class="nutri"><li><span class="k">kcal</span>120</li><li><span class="k">Protein</span>4.4 g</li><li><span class="k">Carbs</span>21.3 g</li><li><span class="k">Fat</span>1.9 g</li><li><span class="k">Fiber</span>2.8 g</li></ul>
+        </div>
+      </div>
+
+      <!-- 8. Brown Rice (cooked) -->
+      <div class="card">
+        <img class="food-photo"
+             alt="Brown rice"
+             data-src1="https://images.weserv.nl/?url=commons.wikimedia.org/wiki/Special:FilePath/Brown_rice.jpg&w=1200&h=800&fit=cover&output=jpg"
+             data-src2="https://placehold.co/1200x800.jpg?text=Brown+Rice">
+        <div class="p">
+          <h3>Brown Rice (cooked)</h3>
+          <ul class="nutri"><li><span class="k">kcal</span>111</li><li><span class="k">Protein</span>2.6 g</li><li><span class="k">Carbs</span>23.0 g</li><li><span class="k">Fat</span>0.9 g</li><li><span class="k">Fiber</span>1.8 g</li></ul>
+        </div>
+      </div>
+
+      <!-- 9. Oats (dry) -->
+      <div class="card">
+        <img class="food-photo"
+             alt="Oats"
+             data-src1="https://images.weserv.nl/?url=commons.wikimedia.org/wiki/Special:FilePath/Oat_grains.jpg&w=1200&h=800&fit=cover&output=jpg"
+             data-src2="https://placehold.co/1200x800.jpg?text=Oats">
+        <div class="p">
+          <h3>Oats (dry)</h3>
+          <ul class="nutri"><li><span class="k">kcal</span>389</li><li><span class="k">Protein</span>16.9 g</li><li><span class="k">Carbs</span>66.3 g</li><li><span class="k">Fat</span>6.9 g</li><li><span class="k">Fiber</span>10.6 g</li></ul>
+        </div>
+      </div>
+
+      <!-- 10. Spinach (raw) -->
+      <div class="card">
+        <img class="food-photo"
+             alt="Spinach leaves"
+             data-src1="https://images.weserv.nl/?url=commons.wikimedia.org/wiki/Special:FilePath/Spinach_leaves.jpg&w=1200&h=800&fit=cover&output=jpg"
+             data-src2="https://placehold.co/1200x800.jpg?text=Spinach">
+        <div class="p">
+          <h3>Spinach (raw)</h3>
+          <ul class="nutri"><li><span class="k">kcal</span>23</li><li><span class="k">Protein</span>2.9 g</li><li><span class="k">Carbs</span>3.6 g</li><li><span class="k">Fat</span>0.4 g</li><li><span class="k">Fiber</span>2.2 g</li></ul>
+        </div>
+      </div>
+
+      <!-- 11. Broccoli (raw) -->
+      <div class="card">
+        <img class="food-photo"
+             alt="Broccoli"
+             data-src1="https://images.weserv.nl/?url=commons.wikimedia.org/wiki/Special:FilePath/Broccoli_and_cross_section_edit.jpg&w=1200&h=800&fit=cover&output=jpg"
+             data-src2="https://placehold.co/1200x800.jpg?text=Broccoli">
+        <div class="p">
+          <h3>Broccoli (raw)</h3>
+          <ul class="nutri"><li><span class="k">kcal</span>34</li><li><span class="k">Protein</span>2.8 g</li><li><span class="k">Carbs</span>6.6 g</li><li><span class="k">Fat</span>0.4 g</li><li><span class="k">Fiber</span>2.6 g</li></ul>
+        </div>
+      </div>
+
+      <!-- 12. Almonds -->
+      <div class="card">
+        <img class="food-photo"
+             alt="Almonds"
+             data-src1="https://images.weserv.nl/?url=commons.wikimedia.org/wiki/Special:FilePath/Almonds.jpg&w=1200&h=800&fit=cover&output=jpg"
+             data-src2="https://placehold.co/1200x800.jpg?text=Almonds">
+        <div class="p">
+          <h3>Almonds</h3>
+          <ul class="nutri"><li><span class="k">kcal</span>579</li><li><span class="k">Protein</span>21.2 g</li><li><span class="k">Carbs</span>21.7 g</li><li><span class="k">Fat</span>49.9 g</li><li><span class="k">Fiber</span>12.5 g</li></ul>
+        </div>
+      </div>
+
+      <!-- 13. Avocado -->
+      <div class="card">
+        <img class="food-photo"
+             alt="Avocado"
+             data-src1="https://images.weserv.nl/?url=commons.wikimedia.org/wiki/Special:FilePath/Avocado.jpg&w=1200&h=800&fit=cover&output=jpg"
+             data-src2="https://placehold.co/1200x800.jpg?text=Avocado">
+        <div class="p">
+          <h3>Avocado</h3>
+          <ul class="nutri"><li><span class="k">kcal</span>160</li><li><span class="k">Protein</span>2.0 g</li><li><span class="k">Carbs</span>8.5 g</li><li><span class="k">Fat</span>14.7 g</li><li><span class="k">Fiber</span>6.7 g</li></ul>
+        </div>
+      </div>
+
+      <!-- 14. Sweet Potato (baked) -->
+      <div class="card">
+        <img class="food-photo"
+             alt="Sweet potato"
+             data-src1="https://images.weserv.nl/?url=commons.wikimedia.org/wiki/Special:FilePath/Sweet_potato.jpg&w=1200&h=800&fit=cover&output=jpg"
+             data-src2="https://placehold.co/1200x800.jpg?text=Sweet+Potato">
+        <div class="p">
+          <h3>Sweet Potato (baked)</h3>
+          <ul class="nutri"><li><span class="k">kcal</span>90</li><li><span class="k">Protein</span>2.0 g</li><li><span class="k">Carbs</span>21 g</li><li><span class="k">Fat</span>0.1 g</li><li><span class="k">Fiber</span>3.3 g</li></ul>
+        </div>
+      </div>
+
+      <!-- 15. Blueberries -->
+      <div class="card">
+        <img class="food-photo"
+             alt="Blueberries"
+             data-src1="https://images.weserv.nl/?url=commons.wikimedia.org/wiki/Special:FilePath/Blueberries.jpg&w=1200&h=800&fit=cover&output=jpg"
+             data-src2="https://placehold.co/1200x800.jpg?text=Blueberries">
+        <div class="p">
+          <h3>Blueberries</h3>
+          <ul class="nutri"><li><span class="k">kcal</span>57</li><li><span class="k">Protein</span>0.7 g</li><li><span class="k">Carbs</span>14.5 g</li><li><span class="k">Fat</span>0.3 g</li><li><span class="k">Fiber</span>2.4 g</li></ul>
+        </div>
+      </div>
+    </div>
+
+    <p class="note">Notes: Values are per 100 g and vary by variety, brand, cooking method, and water content.</p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container small">
+    © 2025 Health & Fitness Hub — Built with ❤️ for learning (demo).
+  </div>
+</footer>
+
+<script>
+  // Load each food image with a robust fallback chain.
+  // 1) data-src1: Wikimedia image via proxy (served as JPEG)
+  // 2) data-src2: Named JPEG placeholder (guaranteed to show)
+  (function() {
+    function loadWithFallback(img) {
+      const src1 = img.getAttribute('data-src1');
+      const src2 = img.getAttribute('data-src2');
+      let step = 0;
+
+      function tryNext() {
+        step++;
+        if (step === 1 && src1) {
+          img.src = src1;
+        } else if (step === 2 && src2) {
+          img.src = src2;
+        } else {
+          img.onerror = null;
+        }
+      }
+
+      img.onerror = tryNext;
+      tryNext();
+    }
+
+    document.querySelectorAll('img.food-photo').forEach(loadWithFallback);
+  })();
+</script>
+
+<!-- ADDED: tiny inline script for live filtering -->
+<script>
+  (function () {
+    const input = document.getElementById('foodSearch');
+    const grid = document.getElementById('foodGrid');
+    const meta = document.getElementById('foodSearchMeta');
+    if (!input || !grid) return;
+
+    // Only the food cards (exclude the search card)
+    const cards = Array.from(grid.querySelectorAll('.card')).filter(card => card.querySelector('h3'));
+
+    function updateCounts(visibleCount) {
+      if (!meta) return;
+      const total = cards.length;
+      if (!input.value.trim()) {
+        meta.textContent = `Showing all ${total} foods.`;
+      } else {
+        meta.textContent = `Showing ${visibleCount} of ${total} for “${input.value.trim()}”.`;
+      }
+    }
+
+    function parseNumeric(text) {
+      // Extract first number in a string (e.g., "31 g" -> 31)
+      const m = text.match(/([0-9]+(?:\.[0-9]+)?)/);
+      return m ? parseFloat(m[1]) : NaN;
+    }
+
+    function cardMatches(card, query) {
+      const text = card.textContent.toLowerCase();
+      // Support simple comparisons like "protein > 10" or "fiber >= 5"
+      const comp = query.match(/(kcal|protein|carbs|fat|fiber|omega-3)\s*(>=|<=|>|<|=)\s*([0-9]+(?:\.[0-9]+)?)/i);
+      if (comp) {
+        const nutrient = comp[1].toLowerCase();
+        const op = comp[2];
+        const val = parseFloat(comp[3]);
+        // find the list item with that nutrient
+        const li = Array.from(card.querySelectorAll('.nutri li')).find(li => li.textContent.toLowerCase().includes(nutrient));
+        if (!li) return false;
+        const n = parseNumeric(li.textContent);
+        if (isNaN(n)) return false;
+        switch (op) {
+          case '>': return n > val;
+          case '<': return n < val;
+          case '>=': return n >= val;
+          case '<=': return n <= val;
+          case '=': return n === val;
+        }
+        return false;
+      }
+      // Default substring search
+      return text.includes(query);
+    }
+
+    function applyFilter(q) {
+      const raw = q.trim();
+      const query = raw.toLowerCase();
+      let visible = 0;
+      cards.forEach(card => {
+        const show = !query || cardMatches(card, raw);
+        card.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+      updateCounts(visible);
+    }
+
+    input.addEventListener('input', () => applyFilter(input.value));
+    // initialize
+    applyFilter('');
+  })();
+</script>
+<!-- /ADDED -->
+</body>
+</html>

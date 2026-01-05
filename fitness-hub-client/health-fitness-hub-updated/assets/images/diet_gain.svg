@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="480">
+  <rect width="100%" height="100%" fill="#f8fafc"/>
+  <g transform="translate(40,40)">
+    <rect rx="18" width="720" height="400" fill="white" stroke="#e2e8f0"/>
+    <text x="120" y="120" font-size="28" fill="#0f172a">Weight Gain Plan</text>
+    <text x="120" y="160" font-size="16" fill="#475569">+300 kcal, protein focus</text>
+  </g>
+</svg>

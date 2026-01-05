@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Admin Dashboard</title>
+
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="stylesheet" href="assets/css/style.css"/>
+<script defer src="assets/js/main.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", ()=>{
+      requireAdmin();
+      const tbody = document.querySelector("tbody");
+      const count = document.getElementById("count");
+      const clearBtn = document.getElementById("clear");
+      function render(){
+        const msgs = getMessages().sort((a,b)=>b.ts-a.ts);
+        tbody.innerHTML = msgs.map((m,i)=>`<tr>
+          <td>${i+1}</td>
+          <td>${m.name}</td>
+          <td>${m.email}</td>
+          <td>${m.message}</td>
+          <td>${new Date(m.ts).toLocaleString()}</td>
+        </tr>`).join("") || `<tr><td colspan="5">No messages yet.</td></tr>`;
+        count.textContent = msgs.length;
+      }
+      render();
+      clearBtn.addEventListener("click", ()=>{
+        localStorage.removeItem("hh_messages");
+        render();
+      });
+    });
+  </script>
+</head>
+<body>
+
+<header class="header">
+  <div class="nav container">
+    <a class="brand" href="index.html"><span class="brand-logo"></span> Health & Fitness Hub</a>
+    <button class="menu-toggle" aria-label="Toggle menu">☰ Menu</button>
+    <ul>
+      <li><a href="gym.html">Gyms</a></li>
+      <li><a href="medical.html">Medical</a></li>
+      <li><a href="nutrition.html">Nutrition</a></li>
+      <li><a href="mind.html">Mind</a></li>
+      <li><a href="diet.html">Diet Plans</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="register.html">Register</a></li>
+      <li><a class="link-admin hidden" href="admin.html">Admin</a></li>
+      <li><a class="link-login" href="login.html">Login</a></li>
+      <li><a class="link-logout hidden" href="#" onclick="logout()">Logout</a></li>
+    </ul>
+  </div>
+</header>
+
+  <section class="section">
+    <div class="container">
+      <h1>Admin Dashboard</h1>
+      <p>Messages received: <strong id="count">0</strong></p>
+      <div class="card"><div class="p">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem">
+          <span class="badge">Inbox</span>
+          <button id="clear" class="btn danger">Clear All</button>
+        </div>
+        <div style="overflow:auto">
+          <table>
+            <thead><tr><th>#</th><th>Name</th><th>Email</th><th>Message</th><th>Time</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div></div>
+    </div>
+  </section>
+
+<footer class="footer">
+  <div class="container small">
+    © 2025 Health & Fitness Hub — Built with ❤️ for learning (demo).
+  </div>
+</footer>
+
+</body>
+</html>

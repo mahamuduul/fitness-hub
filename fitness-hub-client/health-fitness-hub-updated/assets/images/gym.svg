@@ -1,0 +1,18 @@
+<svg width="720" height="400" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <linearGradient id="g1" x1="0" x2="1">
+   <stop offset="0%" stop-color="#06b6d4"/>
+   <stop offset="100%" stop-color="#22c55e"/>
+  </linearGradient>
+ </defs>
+ <rect width="100%" height="100%" fill="#e2e8f0"/>
+ <g transform="translate(60,40)">
+  <rect width="600" height="320" rx="24" fill="white" stroke="#cbd5e1"/>
+  <g transform="translate(40,40)">
+    <circle cx="60" cy="120" r="60" fill="url(#g1)"/>
+    <rect x="140" y="90" width="280" height="60" rx="12" fill="#0ea5e9" opacity=".2"/>
+    <text x="140" y="130" font-size="28" fill="#0f172a" font-family="Verdana">Stronger Every Day</text>
+    <text x="140" y="160" font-size="14" fill="#475569" font-family="Verdana">Nearby gyms & trainers</text>
+  </g>
+ </g>
+</svg>

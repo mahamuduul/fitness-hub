@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="480">
+  <rect width="100%" height="100%" fill="#f0fdf4"/>
+  <g transform="translate(40,40)">
+    <rect rx="18" width="720" height="400" fill="white" stroke="#bbf7d0"/>
+    <text x="120" y="120" font-size="28" fill="#065f46">Mountain Pose</text>
+    <text x="120" y="160" font-size="16" fill="#475569">Tadasana — Foundation posture</text>
+  </g>
+</svg>

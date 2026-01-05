@@ -1,0 +1,85 @@
+/* Base Reset */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  line-height:1.6;
+  color:#0f172a; /* slate-900 */
+  background:#f8fafc; /* slate-50 */
+}
+
+/* Layout */
+.container{max-width:1100px;margin:0 auto;padding:1rem}
+.header{
+  position:sticky;top:0;z-index:1000;background:white;border-bottom:1px solid #e2e8f0;
+  backdrop-filter: saturate(180%) blur(6px);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:.5rem;padding:.75rem 1rem}
+.brand{display:flex;align-items:center;gap:.5rem;font-weight:800;font-size:1.125rem}
+.brand-logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#22c55e,#06b6d4);display:inline-block}
+.nav ul{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none}
+.nav a{display:inline-block;padding:.5rem .75rem;border-radius:10px;text-decoration:none;color:#0f172a}
+.nav a:hover{background:#e2e8f0}
+.nav .cta{background:#0ea5e9;color:white}
+.nav .cta:hover{filter:brightness(.95)}
+
+/* Mobile nav */
+.menu-toggle{display:none}
+@media(max-width:860px){
+  .nav ul{display:none;width:100%;flex-direction:column;margin-top:.5rem}
+  .nav.open ul{display:flex}
+  .menu-toggle{display:inline-flex;align-items:center;gap:.4rem;border:1px solid #cbd5e1;background:white;padding:.4rem .6rem;border-radius:10px}
+}
+
+/* Hero */
+.hero{
+  background: radial-gradient(1000px 400px at 10% 0%, #e0f2fe 0, transparent 70%),
+              radial-gradient(1000px 400px at 90% 0%, #dcfce7 0, transparent 70%);
+  padding:3rem 1rem;border-bottom:1px solid #e2e8f0;
+}
+.hero .wrap{display:grid;grid-template-columns:1.3fr 1fr;gap:2rem;align-items:center}
+@media(max-width:860px){.hero .wrap{grid-template-columns:1fr}}
+.hero h1{font-size:2rem;line-height:1.2;margin-bottom:1rem}
+.hero p{font-size:1.05rem;margin-bottom:1rem;color:#334155}
+.buttons{display:flex;gap:.75rem;flex-wrap:wrap}
+.button{padding:.65rem .95rem;border-radius:12px;border:1px solid #cbd5e1;text-decoration:none;color:#0f172a;background:white}
+.button.primary{background:#22c55e;border-color:#16a34a;color:white}
+.button:hover{filter:brightness(.98)}
+
+/* Cards */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:2rem 0}
+@media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.grid{grid-template-columns:1fr}}
+.card{background:white;border:1px solid #e2e8f0;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(2,6,23,.04)}
+.card img{width:100%;height:180px;object-fit:cover;background:#e2e8f0}
+.card .p{padding:1rem}
+.card h3{font-size:1.15rem;margin-bottom:.35rem}
+.badge{display:inline-block;padding:.2rem .5rem;border-radius:999px;background:#e2e8f0;color:#0f172a;font-size:.75rem}
+
+/* Forms */
+form{display:grid;gap:.75rem}
+input,select,textarea{
+  width:100%;padding:.65rem .8rem;border:1px solid #cbd5e1;border-radius:10px;background:white
+}
+label{font-weight:600;font-size:.95rem}
+button, .btn{
+  padding:.65rem .95rem;border-radius:12px;border:1px solid #cbd5e1;background:white;cursor:pointer
+}
+.btn.primary, button.primary{background:#0ea5e9;border-color:#0284c7;color:white}
+.btn.danger{background:#ef4444;border-color:#b91c1c;color:white}
+
+/* Tables */
+table{width:100%;border-collapse:collapse;border:1px solid #e2e8f0;background:white;border-radius:12px;overflow:hidden}
+th,td{padding:.75rem;border-bottom:1px solid #e2e8f0;text-align:left}
+th{background:#f1f5f9}
+
+/* Footer */
+.footer{padding:2rem 1rem;border-top:1px solid #e2e8f0;text-align:center;color:#64748b}
+.small{font-size:.85rem;color:#64748b}
+
+/* Utility */
+.section{padding:2rem 1rem}
+.kbd{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;background:#e2e8f0;border-radius:6px;padding:.1rem .35rem}
+.hidden{display:none !important}
+.success{color:#16a34a}
+.error{color:#b91c1c}

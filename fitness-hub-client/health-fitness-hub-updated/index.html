@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Health & Fitness Hub</title>
+
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <!-- Slick Slider CSS -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+  <script defer src="assets/js/main.js"></script>
+
+  <style>
+    /* Optional: minimal tweaks for full-bleed hero slider */
+    .hero { padding: 0; margin: 0; }
+    .hero .container { padding: 0; }
+    .hero .hero-slider img { width: 100%; height: auto; display: block; }
+    .hero .slick-dots { bottom: 12px; }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <div class="nav container">
+    <a class="brand" href="index.html">
+      <!-- ADDED: logo image (kept everything else unchanged) -->
+
+      <span class="">
+        <img src="https://static1.squarespace.com/static/67ac789e2722625ed79275f7/t/68129b75dca49a402ddb2f5e/1746049648239/" alt="Health & Fitness Hub Logo" width="28" height="28" style="vertical-align:middle;margin-right:8px"></span> Health & Fitness Hub
+    </a>
+    <button class="menu-toggle" aria-label="Toggle menu">☰ Menu</button>
+    <ul>
+      <li><a href="gym.html">Gyms</a></li>
+      <li><a href="medical.html">Medical</a></li>
+      <li><a href="nutrition.html">Nutrition</a></li>
+      <li><a href="mind.html">Mind</a></li>
+      <li><a href="diet.html">Diet Plans</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="register.html">Register</a></li>
+      <li><a class="link-login" href="login.html">Login</a></li>
+      <li><a class="link-logout hidden" href="#" onclick="logout()">Logout</a></li>
+    </ul>
+  </div>
+</header>
+
+  <!-- HERO: replaced inner content with jQuery Slick image slider -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-slider">
+        <div>
+          <img src="assets/images/1.png" alt="Yoga pose in studio">
+        </div>
+        <div>
+          <img src="assets/images/2.png" alt="Yoga pose in studio">
+        </div>
+        <div>
+          <img src="assets/images/3.png" alt="Yoga pose in studio">
+        </div>
+        <div>
+          <img src="assets/images/4.png" alt="Yoga pose in studio">
+        </div>
+        <div>
+          <img src="assets/images/5.png" alt="Yoga pose in studio">
+        </div>
+        <div>
+          <img src="assets/images/6.png" alt="Yoga pose in studio">
+        </div>
+        <div>
+          <img src="assets/images/7.png" alt="Yoga pose in studio">
+        </div>
+        <div>
+          <img src="assets/images/8.png" alt="Yoga pose in studio">
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="grid">
+      <a class="card" href="medical.html">
+        <img src="https://www.globalhealthinternational.org/wp-content/uploads/2020/02/Depositphotos_100565644_xl-2015.jpg" alt="Medical"/>
+        <div class="p"><h3>Medical Consultancy</h3><p>Evidence-based tips & doctor info.</p></div>
+      </a>
+      <a class="card" href="nutrition.html">
+        <img src="https://kbth.gov.gh/wp-content/uploads/2025/05/Nutrition-Wave-Article-Marty-Gallagher.jpg" alt="Nutrition"/>
+        <div class="p"><h3>Nutrition</h3><p>Food → Protein/Carbs/Fats sources.</p></div>
+      </a>
+      <a class="card" href="mind.html">
+        <img src="https://arohanyoga.com/wp-content/uploads/2024/03/Meditation-vs.-Yoga.jpg" alt="Mind"/>
+        <div class="p"><h3>Mind Training</h3><p>Meditation & Yoga basics.</p></div>
+      </a>
+      <a class="card" href="diet.html">
+        <img src="https://images.apollo247.in/pd-cms/cms/2025-05/AdobeStock_345968560.jpg?tr=q-80,f-webp,w-450,dpr-3,c-at_max%201350w" alt="Diet"/>
+        <div class="p"><h3>Diet Plans</h3><p>Weight gain & weight loss guides.</p></div>
+      </a>
+      <a class="card" href="about.html">
+        <img src="https://www.shutterstock.com/image-vector/why-choose-us-symbol-text-260nw-2396164945.jpg" alt="About"/>
+        <div class="p"><h3>Why choose us?</h3><p>Simple, practical, and local.</p></div>
+      </a>
+      <a class="card" href="contact.html">
+        <img src="https://www.scalarat.com/wp-content/uploads/2022/11/contact-us.jpg" alt="Contact"/>
+        <div class="p"><h3>Contact us</h3><p>Questions? Send a message.</p></div>
+      </a>
+    </div>
+  </div>
+
+<footer class="footer">
+  <div class="container small">
+    © 2025 Health & Fitness Hub — Built with ❤️ for learning (demo).
+  </div>
+</footer>
+
+<!-- jQuery and Slick Slider JS (load at end for performance) -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script>
+  $(function() {
+    $('.hero-slider').slick({
+      autoplay: true,
+      autoplaySpeed: 3000,
+      dots: true,
+      arrows: true,
+      infinite: true,
+      pauseOnHover: true,
+      adaptiveHeight: true
+    });
+  });
+</script>
+
+</body>
+</html>
